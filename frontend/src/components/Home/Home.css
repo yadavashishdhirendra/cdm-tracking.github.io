@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header-username {
+  padding: 20px 20px 20px 20px;
+  border-bottom: 1px solid #f7f7f7;
+  background-color: #423f8d;
+}
+
+.header-username > h3 {
+  font-family: "Rokkitt_Medium";
+  font-size: 22px;
+  letter-spacing: 3px;
+  color: white;
+}
+
+.header-username {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-username > div {
+  background-color: #f7f7f7;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.header-username > div > h3 {
+  font-size: 28px;
+  font-family: "Rokkitt_Medium";
+}
+
+#basic-button {
+  cursor: pointer;
+}
+
+.task-team {
+  font-size: 28px;
+  text-align: center;
+  font-family: "Rokkitt_Medium";
+}
+
+@media screen and (max-width: 576px) {
+  .header-username > h3 {
+    font-size: 18px;
+  }
+  .header-username > div {
+    width: 40px;
+    height: 40px;
+  }
+  .header-username > div > h3 {
+    font-size: 24px;
+  }
+}
+
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+  top: 90px !important;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
+  border-radius: 0px !important;
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  -ms-border-radius: 0px !important;
+  -o-border-radius: 0px !important;
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  font-family: "Rokkitt_Medium" !important;
+  font-size: 16px !important;
+}

@@ -1,0 +1,74 @@
+.crate-task {
+  padding: 20px;
+}
+
+.crate-task .CREATETASK {
+  background-color: #423f8d !important;
+  font-family: "Rokkitt_Medium " !important;
+  letter-spacing: 0.03em;
+  font-size: 14px;
+}
+
+.redirect {
+  text-decoration: none;
+  font-family: "Rokkitt_Medium";
+  font-size: 16px;
+}
+
+.breadcrumb {
+  margin: 20px 20px 0px 20px;
+}
+
+.create-task h2 {
+  font-size: 30px !important;
+  letter-spacing: 0.03em;
+  line-height: 1.2195;
+  font-family: "Rokkitt_Bold" !important;
+}
+
+.create-task h2 span {
+  vertical-align: baseline;
+}
+
+/* width */
+.MuiBox-root::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.MuiBox-root::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+.MuiBox-root::-webkit-scrollbar-thumb {
+  background: #423f8d;
+  border-radius: 10px;
+}
+
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  font-family: "Rokkitt_Medium " !important;
+}
+
+.css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 11.5px 14px !important;
+}
+
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 11.5px 14px !important;
+}
+
+.timer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1em;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}

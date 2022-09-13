@@ -1,0 +1,192 @@
+.task-name > h1 {
+  font-size: 38px;
+  font-family: "Rokkitt_Bold";
+}
+
+@font-face {
+  font-family: "Rokkitt_Regular";
+  src: url("../../Assets/Fonts/Rokkitt-Regular.ttf");
+}
+
+.task-info {
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  grid-gap: 2rem;
+  margin: 20px 20px 20px 20px;
+}
+
+.task-info > div {
+  border: 1px solid #f7f7f7;
+  padding: 20px 20px 20px 20px;
+}
+
+.comment-scroll {
+  margin-top: 30px;
+  height: 350px;
+  overflow-y: auto;
+  max-width: 500px;
+}
+
+.status-progress {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  grid-gap: 1rem;
+}
+
+.button-spacearound {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.asignee-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.asignee-info > div:nth-child(1) {
+  background-color: #f7f7f7;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Rokkitt_Bold";
+}
+
+.asignee-info > p {
+  margin-left: 10px;
+  font-family: "Rokkitt_Medium";
+}
+
+.inprogress {
+  margin: 20px 20px 20px 20px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.auto-ms {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-top: 20px;
+}
+
+.dicussion-headline {
+  font-family: "Rokkitt_Medium";
+  margin-bottom: 15px;
+}
+
+.comment-user-info {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.comment-user-info > p {
+  margin-left: 1rem;
+  font-family: "Rokkitt_Medium";
+}
+
+.card {
+  margin: 20px 0px 20px 0px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 5px;
+}
+
+.comment {
+  font-family: "Rokkitt_Regular";
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.comment-user-info > .comment-div {
+  background-color: #f7f7f7;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Rokkitt_Medium";
+}
+
+.comment-ms {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.redirect {
+  text-decoration: none;
+  font-family: "Rokkitt_Medium";
+  font-size: 16px;
+  color: #551a8b !important;
+  cursor: pointer;
+}
+
+.in {
+  color: red;
+}
+
+.out {
+  color: green;
+}
+
+@media screen and (max-width: 992px) {
+  .css-tm8chc {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  .task-info {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.time-scope {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+  height: 200px;
+  overflow-y: scroll;
+  margin-bottom: 2rem;
+}
+
+.border {
+  margin-top: 1rem;
+  border: 1px solid #f7f7f7;
+  padding: 8px 10px 8px 10px;
+}
+
+.time {
+  font-family: "Rokkitt_Regular";
+}
+
+.button-send-minutes {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  max-width: fit-content;
+  margin: auto;
+}
+
+.button-send-minutes > button {
+  margin-bottom: 2rem;
+}
+
+.productive-hours {
+  font-family: "Rokkitt_Regular";
+  font-size: 18px;
+}
+
+.done {
+  text-align: center;
+  font-family: "Rokkitt_Bold";
+  margin-top: 20px;
+}

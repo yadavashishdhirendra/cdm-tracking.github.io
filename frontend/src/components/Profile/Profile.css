@@ -1,0 +1,166 @@
+@font-face {
+  font-family: "Rokkit_Medium";
+  src: url("../../Assets/Fonts/Rokkitt-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Rokkit_Regular";
+  src: url("../../Assets/Fonts/Rokkitt-Regular.ttf");
+}
+
+.container-profile {
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  grid-gap: 2rem;
+  height: auto;
+}
+
+.container-profile > div {
+  /* border: 1px solid black; */
+  height: auto;
+  padding: 20px 30px 20px 20px;
+}
+
+.container-profile > div:nth-child(1) > h3 {
+  font-size: 22px;
+  font-family: "Rokkitt_Medium";
+  background-color: #fa9494;
+  display: inline-block;
+  padding: 5px 10px;
+}
+
+.user-letter {
+  background: #544a7d;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f7f7f7, #ffc4c4);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f7f7f7, #ffc4c4);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 52px;
+  font-family: "Rokkitt_Medium";
+}
+
+.container-profile > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 2px 6px 0px rgb(250 250 250);
+}
+
+.user-name {
+  font-size: 22px;
+  font-family: "Rokkitt_Medium";
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-icons > p {
+  width: 30px;
+  height: 30px;
+  font-family: "Rokkitt_Medium";
+  font-size: 16px;
+  background: #544a7d;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f7f7f7, #ffc4c4);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f7f7f7, #ffc4c4);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.user-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.notify-container {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f7f7f7;
+}
+
+.user-icons > h5 {
+  font-family: "Rokkitt_Medium";
+  font-size: 16px;
+}
+
+.user-name {
+  margin-top: 20px;
+}
+
+.delayed-task {
+  padding: 20px 0px 20px 0px;
+  border-bottom: 3px solid rgba(250, 250, 250, 1);
+  margin-bottom: 20px;
+}
+
+.delayed-task > p {
+  font-family: "Rokkit_Regular";
+  font-size: 15px;
+  /* Rokkit_Regular */
+}
+
+.delayed-task > p > span {
+  font-family: "Rokkit_Medium";
+  font-size: 16px;
+}
+
+.delayed-container {
+  margin-top: 20px;
+  overflow-y: scroll;
+  height: 50%;
+}
+
+/* width */
+.delayed-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.delayed-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+.delayed-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #f7f7f7, #ffc4c4);
+  border-radius: 10px;
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+  vertical-align: bottom;
+}
+
+.startdate {
+  font-size: 14px;
+  margin-top: 10px;
+  font-family: "Rokkit_Regular";
+}
+
+.red {
+  color: red;
+}
+
+.info-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

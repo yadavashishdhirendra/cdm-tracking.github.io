@@ -1,0 +1,59 @@
+@font-face {
+  font-family: Rokkitt_Bold;
+  src: url(../../Assets/Fonts/Rokkitt-Bold.ttf);
+}
+
+.header-notify {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.create-client > button {
+  background-color: #423f8d !important;
+  font-family: "Rokkitt_Medium";
+  font-size: 14px;
+}
+
+.create-client {
+  padding: 20px 20px 20px 20px;
+}
+
+.create-client .create-para h2 {
+  font-size: 30px !important;
+  letter-spacing: 0.03em;
+  line-height: 1.2195;
+  font-family: "Rokkitt_Bold" !important;
+}
+
+.create-client .create-para h2 span {
+  vertical-align: baseline;
+}
+
+#demo-select-small {
+  font-family: "Rokkitt_Medium" !important;
+}
+
+.submit-button {
+  background-color: #423f8d !important;
+}
+
+.MuiFormLabel-root.Mui-focused {
+  color: #423f8d !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #423f8d !important;
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  background-color: #c7c7c7c7;
+  border-radius: 50%;
+}
+
+.user-task-row {
+  display: flex;
+  justify-content: center;
+}
