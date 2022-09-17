@@ -11,7 +11,7 @@
 }
 
 .header-username > h3 {
-  font-family: "Rokkitt_Medium";
+  font-family: "poppins_medium";
   font-size: 22px;
   letter-spacing: 3px;
   color: white;
@@ -40,7 +40,7 @@
 
 .header-username > div > h3 {
   font-size: 28px;
-  font-family: "Rokkitt_Medium";
+  font-family: "poppins_medium";
 }
 
 #basic-button {
@@ -48,9 +48,9 @@
 }
 
 .task-team {
-  font-size: 28px;
+  font-size: 22px;
   text-align: center;
-  font-family: "Rokkitt_Medium";
+  font-family: "poppins_medium";
 }
 
 @media screen and (max-width: 576px) {
@@ -77,6 +77,6 @@
 }
 
 .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
-  font-family: "Rokkitt_Medium" !important;
+  font-family: "poppins_medium" !important;
   font-size: 16px !important;
 }

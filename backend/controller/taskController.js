@@ -220,10 +220,9 @@ exports.getProductiveHours = async (req, res) => {
 
 exports.getDelayedTask = async (req, res) => {
   try {
-    let date = moment().format("DD/MM/YYYY");
     let task = await Task.find({
       enddate: {
-        $lt: date,
+        $lt: new Date().toISOString(),
       },
       owner: req.user._id,
     });
@@ -251,15 +250,16 @@ exports.minutesScorePerTask = async (req, res) => {
     }
 
     task.minutes.push({
-      minute: req.body.minute,
       hour: req.body.hour,
+      minute: req.body.minute,
+      seconds: req.body.seconds
     });
 
     await task.save();
     return res.status(200).json({
       success: true,
       task,
-      message: "Minutes Stored",
+      message: "Time Stored",
     });
   } catch (error) {
     res.status(500).json({
@@ -268,3 +268,19 @@ exports.minutesScorePerTask = async (req, res) => {
     });
   }
 };
+
+exports.getAllTask = async (req, res) => {
+  try {
+    const tasks = await Task.find({});
+
+    return res.status(200).json({
+      success: true,
+      tasks: tasks.length
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}

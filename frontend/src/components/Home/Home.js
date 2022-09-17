@@ -16,6 +16,7 @@ const Home = () => {
       {/* CREATE CLIENT */}
 
       {/* DATACOLLECTIONS */}
+      <h3 className="task-team">Client List</h3>
       <CreateList />
       <h3 className="task-team">Task Assigned From Team</h3>
       <TaskFromTeam />

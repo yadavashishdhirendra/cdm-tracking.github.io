@@ -4,15 +4,20 @@
 
 .crate-task .CREATETASK {
   background-color: #423f8d !important;
-  font-family: "Rokkitt_Medium " !important;
+  /* font-family: "poppins_medium " !important; */
   letter-spacing: 0.03em;
   font-size: 14px;
 }
 
 .redirect {
   text-decoration: none;
-  font-family: "Rokkitt_Medium";
+  font-family: "poppins_medium";
   font-size: 16px;
+}
+
+.create-task{
+  display: flex;
+  align-items: center;
 }
 
 .breadcrumb {
@@ -23,7 +28,7 @@
   font-size: 30px !important;
   letter-spacing: 0.03em;
   line-height: 1.2195;
-  font-family: "Rokkitt_Bold" !important;
+  font-family: "poppins_bold" !important;
 }
 
 .create-task h2 span {
@@ -48,7 +53,7 @@
 }
 
 .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
-  font-family: "Rokkitt_Medium " !important;
+  font-family: "poppins_medium " !important;
 }
 
 .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {

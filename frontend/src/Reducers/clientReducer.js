@@ -80,3 +80,22 @@ export const deleteclient = createReducer(initialState, {
     state.error = null;
   },
 });
+
+
+export const getAllClients = createReducer(initialState, {
+  // LOGIN
+  getAllClientsRequest: (state) => {
+    state.loading = true;
+  },
+  getAllClientsSuccess: (state, action) => {
+    state.loading = false;
+    state.clients = action.payload;
+  },
+  getAllClientsFailure: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+  clearErrors: (state) => {
+    state.error = null;
+  },
+});

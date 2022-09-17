@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import {
   createClientReducer,
   deleteclient,
+  getAllClients,
   getOwnClientReducer,
   getsingleClientTask,
 } from "./Reducers/clientReducer";
@@ -15,7 +16,6 @@ import {
   getProductiveHoursEnd,
   getSingleTask,
   updateProductiveTime,
-  updateProductiveTimeEnd,
   updateTaskStatus,
 } from "./Reducers/taskReducer";
 import {
@@ -45,6 +45,7 @@ const store = configureStore({
     delayedTask: getDelayedTask,
     minutes: addMinutes,
     hour: addHour,
+    clients: getAllClients
   },
 });
 

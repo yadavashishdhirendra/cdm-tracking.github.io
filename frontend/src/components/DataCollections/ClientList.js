@@ -14,6 +14,7 @@ import {
   getOwnClients,
 } from "../../Actions/clientActions";
 import { useAlert } from "react-alert";
+import { SpinnerCircular } from 'spinners-react';
 
 const CreateList = () => {
   const alert = useAlert();
@@ -29,26 +30,30 @@ const CreateList = () => {
   } = useSelector((state) => state.deleteClient);
   console.log(clients);
   const columns = [
-    { field: "id", headerName: "ID", minWidth: 200, flex: 0.5 },
+    { field: "id", headerName: "ID", width: 250,flex:1 },
     {
       field: "ClientName",
       headerName: "Client Name",
-      width: "200",
+      width: "180",
+      flex:1
     },
     {
       field: "ClientEmail",
       headerName: "Client Email",
-      width: 400,
+      width: 230,
+      flex:1
     },
     {
       field: "Service",
       headerName: "Service",
-      width: 300,
+      width: 200,
+      flex:1
     },
     {
       field: "Actions",
       headerName: "Actions",
       width: 200,
+      flex:1,
       renderCell: (params) => {
         return (
           <div className="button-div">
@@ -118,21 +123,26 @@ const CreateList = () => {
     }
     dispatch(getOwnClients());
   }, [dispatch, message, error]);
-
   return (
-    <div className="Create-data">
-      <Box sx={{ height: 400, width: "100%" }}>
-        <DataGrid
-          style={{ fontFamily: "Rokkitt_Medium", fontSize: "18px" }}
-          rows={rows}
-          columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[5]}
-          autoHeight
-          sortingOrder="null"
-        />
-      </Box>
-    </div>
+    <>
+      {
+        loading ? <div className="spinner">
+          <SpinnerCircular enabled={true} color='#000' size={30} thickness={300} />
+        </div> : <div className="Create-data">
+          <Box sx={{ height: 400, width: "100%" }}>
+            <DataGrid
+              style={{ fontFamily: "poppins_medium", fontSize: "18px" }}
+              rows={rows}
+              columns={columns}
+              pageSize={10}
+              rowsPerPageOptions={[5]}
+              autoHeight
+              sortingOrder="null"
+            />
+          </Box>
+        </div>
+      }
+    </>
   );
 };
 

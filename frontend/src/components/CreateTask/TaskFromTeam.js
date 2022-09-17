@@ -20,41 +20,48 @@ const TaskFromTeam = () => {
   const { task } = useSelector((state) => state.task);
   // TASK GRID
   const columns = [
-    { field: "id", headerName: "ID", minWidth: 200, flex: 0.5 },
+    { field: "id", headerName: "ID", minWidth: 200, flex: 1 },
     {
       field: "Task",
       headerName: "Task",
       width: "200",
+      flex:1
     },
     {
       field: "Priority",
       headerName: "Priority",
       width: 400,
+      flex:1
     },
     {
       field: "IssueDate",
       headerName: "Issue Date",
       width: 300,
+      flex:1
     },
     {
       field: "DeliveryDate",
       headerName: "Delivery Date",
       width: 300,
+      flex:1
     },
     {
       field: "Asignee",
       headerName: "Asignee",
       width: 300,
+      flex:1
     },
     {
       field: "Reporter",
       headerName: "Reporter",
       width: 300,
+      flex:1
     },
     {
       field: "Status",
       headerName: "Status",
       width: 300,
+      flex:1,
       cellClassName: (params) => {
         return params.getValue(params.id, "Status") === "Done"
           ? "green"
@@ -65,6 +72,7 @@ const TaskFromTeam = () => {
       field: "Actions",
       headerName: "Actions",
       width: 200,
+      flex:1,
       renderCell: (params) => {
         return (
           <div className="button-div">
@@ -134,7 +142,7 @@ const TaskFromTeam = () => {
     <div className="Create-data">
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
-          style={{ fontFamily: "Rokkitt_Medium", fontSize: "18px" }}
+          style={{ fontFamily: "poppins_medium", fontSize: "18px" }}
           rows={rows}
           columns={columns}
           pageSize={10}

@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.left-side-content {
+    padding: 20px 60px 20px 80px;
+}
+
+.cards-live-content {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 2rem;
+}
+
+.cards-live-content>div {
+    border-radius: 5px;
+    height: 100px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 20px 20px 20px 20px;
+    position: relative;
+    top: 0;
+}
+
+.cards-live-content>div>img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    background-size: cover;
+}
+
+.cards-live-content>div>p:nth-child(2) {
+    font-family: "poppins_bold";
+    font-size: 16px;
+}
+
+.cards-live-content>div>p:nth-child(3) {
+    font-family: "poppins_bold";
+    font-size: 16px;
+    margin-top: 0.5rem;
+}
+
+.cards-live-content>div:nth-child(1) {
+    background: linear-gradient(90deg, #FEB130 8%, #F88F4C 100%);
+}
+
+.cards-live-content>div:nth-child(2) {
+    background: linear-gradient(90deg, #59ADFA 26.61%, #7AD0FA 100%);
+}
+
+.cards-live-content>div:nth-child(3) {
+    background: linear-gradient(92.47deg, #844BE2 2.07%, #3E1F92 98.31%);
+}
+
+.cards-live-content>div:nth-child(4) {
+    background: linear-gradient(90deg, #FE72AE 0%, #E352AD 94.29%);
+}
+
+.cards-live-content>div:nth-child(5) {
+    background-image: linear-gradient(to right top, #95ca66, #98cc6a, #9bce6e, #9ed171, #a1d375, #a1d374, #a0d274, #a0d273, #9ccf6e, #98cc69, #93ca64, #8fc75f);
+}
+
+
+.cards-live-content>div:nth-child(6) {
+    background-image: linear-gradient(to right top, #e9cd42, #e9cc3c, #e9cb35, #eaca2d, #eac924, #eaca25, #ebca27, #ebcb28, #ebcd33, #eccf3c, #ecd145, #edd34d);
+}
+
+
+@media screen and (max-width: 1080px) {
+    .cards-live-content {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .cards-live-content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .cards-live-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .cards-live-content {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .left-side-content {
+        padding: 20px 20px 20px 60px;
+    }
+}
+
+.Create-data>div>h3 {
+    font-family: 'poppins_bold';
+    margin-right: 0.5rem;
+}
+
+.Create-data>div {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}

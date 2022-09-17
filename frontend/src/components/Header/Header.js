@@ -27,6 +27,10 @@ const Header = () => {
     navigate("/profile");
   };
 
+  const handleAdmin = () => {
+    navigate('/admindashboard')
+  }
+
   const handleLogout = () => {
     dispatch(logoutUser());
   };
@@ -38,7 +42,8 @@ const Header = () => {
   }, [isAuthenticated]);
 
   return (
-    <div className="header-username">
+    <div>
+      <div className="header-username">
       <h3>Hello, {user.name}!</h3>
       <div
         id="basic-button"
@@ -58,9 +63,13 @@ const Header = () => {
           "aria-labelledby": "basic-button",
         }}
       >
+         {
+          user && user.userRole === "Admin" ? <MenuItem onClick={handleAdmin}>Admin</MenuItem> : null
+         }
         <MenuItem onClick={handleProfile}>My Profile</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
+    </div>
     </div>
   );
 };

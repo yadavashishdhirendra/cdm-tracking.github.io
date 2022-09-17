@@ -73,11 +73,17 @@ const taskSchema = new mongoose.Schema({
   ],
   minutes: [
     {
-      minute: {
-        type: Number,
-      },
       hour: {
         type: Number,
+        default: 0
+      },
+      minute: {
+        type: Number,
+        default: 0
+      },
+      seconds: {
+        type: Number,
+        default: 0
       },
     },
   ],

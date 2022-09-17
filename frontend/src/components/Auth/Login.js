@@ -35,7 +35,7 @@ const Login = () => {
         type: "ClearErrors",
       });
     }
-  }, [dispatch, isAuthenticated, navigate, error]);
+  }, [dispatch, isAuthenticated, navigate, error,alert]);
 
   return (
     <div className="register-container">

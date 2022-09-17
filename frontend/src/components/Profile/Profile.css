@@ -1,13 +1,3 @@
-@font-face {
-  font-family: "Rokkit_Medium";
-  src: url("../../Assets/Fonts/Rokkitt-Medium.ttf");
-}
-
-@font-face {
-  font-family: "Rokkit_Regular";
-  src: url("../../Assets/Fonts/Rokkitt-Regular.ttf");
-}
-
 .container-profile {
   display: grid;
   grid-template-columns: 4fr 2fr;
@@ -23,7 +13,7 @@
 
 .container-profile > div:nth-child(1) > h3 {
   font-size: 22px;
-  font-family: "Rokkitt_Medium";
+  font-family: "poppins_medium";
   background-color: #fa9494;
   display: inline-block;
   padding: 5px 10px;
@@ -47,7 +37,7 @@
   justify-content: center;
   align-items: center;
   font-size: 52px;
-  font-family: "Rokkitt_Medium";
+  font-family: "poppins_medium";
 }
 
 .container-profile > div:nth-child(2) {
@@ -58,7 +48,7 @@
 
 .user-name {
   font-size: 22px;
-  font-family: "Rokkitt_Medium";
+  font-family: "poppins_medium";
 }
 
 .user-info {
@@ -70,7 +60,7 @@
 .user-icons > p {
   width: 30px;
   height: 30px;
-  font-family: "Rokkitt_Medium";
+  font-family: "poppins_medium";
   font-size: 16px;
   background: #544a7d;
   /* fallback for old browsers */
@@ -97,8 +87,8 @@
 }
 
 .user-icons > h5 {
-  font-family: "Rokkitt_Medium";
-  font-size: 16px;
+  font-family: "poppins_medium";
+  font-size: 15px;
 }
 
 .user-name {
@@ -112,13 +102,13 @@
 }
 
 .delayed-task > p {
-  font-family: "Rokkit_Regular";
+  font-family: "poppins_regular";
   font-size: 15px;
   /* Rokkit_Regular */
 }
 
 .delayed-task > p > span {
-  font-family: "Rokkit_Medium";
+  font-family: "poppins_medium";
   font-size: 16px;
 }
 
@@ -128,22 +118,6 @@
   height: 50%;
 }
 
-/* width */
-.delayed-container::-webkit-scrollbar {
-  width: 5px;
-}
-
-/* Track */
-.delayed-container::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
-}
-
-/* Handle */
-.delayed-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(to right, #f7f7f7, #ffc4c4);
-  border-radius: 10px;
-}
 
 .css-i4bv87-MuiSvgIcon-root {
   vertical-align: bottom;
@@ -152,7 +126,7 @@
 .startdate {
   font-size: 14px;
   margin-top: 10px;
-  font-family: "Rokkit_Regular";
+  font-family: "poppins_regular";
 }
 
 .red {

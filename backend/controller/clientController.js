@@ -1,5 +1,6 @@
 const Client = require("../schema/clientSchema");
 const Task = require("../schema/taskSchema");
+const User = require("../schema/userSchema");
 
 exports.createClient = async (req, res) => {
   try {
@@ -99,3 +100,41 @@ exports.deleteClient = async (req, res) => {
     });
   }
 };
+
+
+exports.getAllClientsByUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    const clients = await Client.find({
+      owner: user
+    })
+
+    return res.status(200).json({
+      success: true,
+      clients
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+
+exports.getAllclients = async (req, res) => {
+  try {
+    const clients = await Client.find({});
+
+    return res.status(200).json({
+      success: true,
+      clients: clients.length
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}

@@ -70,7 +70,7 @@ const CreateClient = () => {
         type: "CreateClientReset",
       });
     }
-  }, [error, client, dispatch]);
+  }, [error, client, dispatch,alert]);
 
   return (
     <div className="create-client">
@@ -96,10 +96,10 @@ const CreateClient = () => {
             <div className="create-para">
               <h2>
                 CREATE CLIENT!{" "}
-                <span>
+              </h2>
+              <span>
                   <DriveFileRenameOutlineIcon />
                 </span>
-              </h2>
             </div>
           </div>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -123,7 +123,6 @@ const CreateClient = () => {
               <FormControl sx={{ mb: 3, minWidth: 120 }} size="small">
                 <InputLabel
                   id="demo-select-small"
-                  style={{ fontFamily: "Rokkitt_Medium", fontSize: 18 }}
                   onChange={(e) => setClientType(e.target.value)}
                 >
                   Client Type
@@ -167,11 +166,11 @@ const CreateClient = () => {
               <Button
                 className="submit-button"
                 type="submit"
-                style={{ fontFamily: "Rokkitt_Medium", fontSize: 18 }}
+                style={{ fontFamily: "poppins_medium", fontSize: 14 }}
                 variant="contained"
                 endIcon={<SendIcon />}
               >
-                Submit
+                {loading ? "Please Wait.." : "Submit"}
               </Button>
             </Box>
           </Typography>

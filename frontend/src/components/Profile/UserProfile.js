@@ -23,6 +23,8 @@ const UserProfile = () => {
   const { task } = useSelector((state) => state.task);
   const { task: DelayedTask } = useSelector((state) => state.delayedTask);
 
+  console.log("DelayedTask",DelayedTask)
+
   // TASK GRID
   const columns = [
     { field: "id", headerName: "ID", minWidth: 200, flex: 0.5 },
@@ -137,8 +139,8 @@ const UserProfile = () => {
             Home
           </Link>
           <Typography
-            fontSize={18}
-            fontFamily="Rokkitt_Medium"
+            fontSize={14}
+            fontFamily="poppins_medium"
             color="text.primary"
           >
             Profile
@@ -151,7 +153,7 @@ const UserProfile = () => {
           <div className="delayed-container">
             <Box sx={{ height: 400, width: "100%" }}>
               <DataGrid
-                style={{ fontFamily: "Rokkitt_Medium", fontSize: "18px" }}
+                style={{ fontFamily: "poppins_medium", fontSize: "18px" }}
                 rows={rows}
                 columns={columns}
                 pageSize={10}

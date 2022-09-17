@@ -1,6 +1,5 @@
 .Create-data {
   padding: 30px;
-  max-width: 1200px;
   margin: auto;
 }
 
@@ -16,8 +15,9 @@
 }
 
 .css-levciy-MuiTablePagination-displayedRows {
-  font-family: "Rokkitt_Medium " !important;
+  font-family: "poppins_medium" !important;
 }
+
 
 .red {
   color: red;

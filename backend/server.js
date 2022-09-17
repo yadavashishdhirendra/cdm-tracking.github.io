@@ -1,6 +1,6 @@
 const app = require("./app");
 const connectToDatabase = require("./config/Database");
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 9000;
 const express = require("express");
 const path = require("path");
 

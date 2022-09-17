@@ -20,7 +20,7 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import { useDispatch, useSelector } from "react-redux";
 import { createTask } from "../../Actions/taskActions";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getSingleClientTasks } from "../../Actions/clientActions";
 import { Tooltip } from "@mui/material";
 import Fade from "@material-ui/core/Fade";
@@ -30,6 +30,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { getAllUsers } from "../../Actions/userActions";
 import { useAlert } from "react-alert";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
+import { SpinnerCircular } from "spinners-react";
 
 //  for select
 
@@ -50,7 +51,6 @@ const style = {
 //  for select
 
 const CreateTask = () => {
-  const navigate = useNavigate();
   const alert = useAlert();
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -76,15 +76,13 @@ const CreateTask = () => {
   const [startdate, setStartDate] = React.useState("");
 
   const handleChange = (date) => {
-    let d = moment(date).format("DD/MM/YYYY");
-    setStartDate(d);
+    setStartDate(date);
   };
 
   const [enddate, setEndDate] = React.useState("");
 
   const handleEndChange = (date) => {
-    let d = moment(date).format("DD/MM/YYYY");
-    setEndDate(d);
+    setEndDate(date);
   };
 
   // date select
@@ -112,6 +110,9 @@ const CreateTask = () => {
   useEffect(() => {
     if (createtaskerror) {
       alert.error(createtaskerror);
+      dispatch({
+        type: "ClearErrors"
+      })
     }
     if (createtask) {
       alert.success("Task Created Successfully!");
@@ -121,45 +122,52 @@ const CreateTask = () => {
     }
     dispatch(getSingleClientTasks(id));
     dispatch(getAllUsers());
-  }, [dispatch, id, createtaskerror, createtask]);
+  }, [dispatch, id, createtaskerror, createtask,alert]);
 
   // TASK GRID
   const columns = [
-    { field: "id", headerName: "ID", minWidth: 200, flex: 0.5 },
+    { field: "id", headerName: "ID", minWidth: 200, flex: 1 },
     {
       field: "Task",
       headerName: "Task",
       width: "200",
+      flex:1
     },
     {
       field: "Priority",
       headerName: "Priority",
-      width: 400,
+      width: 100,
+      flex:1
     },
     {
       field: "IssueDate",
       headerName: "Issue Date",
-      width: 300,
+      width: 150,
+      flex:1
     },
     {
       field: "DeliveryDate",
       headerName: "Delivery Date",
-      width: 300,
+      width: 150,
+      flex:1
     },
     {
       field: "Asignee",
       headerName: "Asignee",
-      width: 300,
+      width: 200,
+      flex:1
     },
     {
       field: "Reporter",
       headerName: "Reporter",
-      width: 300,
+      width: 200,
+      flex:1
     },
     {
       field: "Status",
       headerName: "Status",
-      width: 300,
+      width: 150,
+      flex:1,
       cellClassName: (params) => {
         return params.getValue(params.id, "Status") === "Done"
           ? "green"
@@ -170,6 +178,7 @@ const CreateTask = () => {
       field: "Actions",
       headerName: "Actions",
       width: 200,
+      flex:1.5,
       renderCell: (params) => {
         return (
           <div className="button-div">
@@ -233,8 +242,8 @@ const CreateTask = () => {
             Home
           </Link>
           <Typography
-            fontSize={18}
-            fontFamily="Rokkitt_Medium"
+            fontSize={14}
+            fontFamily="poppins_medium"
             color="text.primary"
           >
             Create Task
@@ -259,12 +268,12 @@ const CreateTask = () => {
         >
           <Box sx={style}>
             <div className="create-task">
-              <h2 style={{ fontFamily: "Rokkitt_Medium", fontSize: 18 }}>
+              <h2 style={{ fontFamily: "poppins_bold", fontSize: 18 }}>
                 CREATE TASK!{" "}
-                <span>
+              </h2>
+              <span>
                   <DriveFileRenameOutlineIcon />
                 </span>
-              </h2>
             </div>
 
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -286,7 +295,7 @@ const CreateTask = () => {
                 <FormControl sx={{ mb: 3, minWidth: 300 }} size="small">
                   <InputLabel
                     id="demo-select-small"
-                    style={{ fontFamily: "Rokkitt_Medium", fontSize: 18 }}
+                    style={{ fontFamily: "poppins_medium", fontSize: 18 }}
                     onChange={(e) => setPriority(e.target.value)}
                   >
                     Priority
@@ -339,12 +348,12 @@ const CreateTask = () => {
                   >
                     {users && users.length > 0
                       ? users.map((item) => {
-                          return (
-                            <MenuItem key={item._id} value={item.email}>
-                              {item.name}
-                            </MenuItem>
-                          );
-                        })
+                        return (
+                          <MenuItem key={item._id} value={item.email}>
+                            {item.name}
+                          </MenuItem>
+                        );
+                      })
                       : null}
                   </Select>
                 </FormControl>
@@ -363,12 +372,12 @@ const CreateTask = () => {
                   >
                     {users && users.length > 0
                       ? users.map((item) => {
-                          return (
-                            <MenuItem key={item._id} value={item.email}>
-                              {item.name}
-                            </MenuItem>
-                          );
-                        })
+                        return (
+                          <MenuItem key={item._id} value={item.email}>
+                            {item.name}
+                          </MenuItem>
+                        );
+                      })
                       : null}
                   </Select>
                 </FormControl>
@@ -379,7 +388,9 @@ const CreateTask = () => {
                   variant="contained"
                   endIcon={<AddCardIcon />}
                 >
-                  Create Task
+                  {
+                    createtaskloading ? "Please wait..." : "Create Task"
+                  }
                 </Button>
               </Box>
             </Typography>
@@ -387,19 +398,23 @@ const CreateTask = () => {
         </Modal>
       </div>
       {/* TASK DATA */}
-      <div className="Create-data">
-        <Box sx={{ height: 400, width: "100%" }}>
-          <DataGrid
-            style={{ fontFamily: "Rokkitt_Medium", fontSize: "18px" }}
-            rows={rows}
-            columns={columns}
-            pageSize={10}
-            rowsPerPageOptions={[5]}
-            autoHeight
-            sortingOrder="null"
-          />
-        </Box>
-      </div>
+      {
+        createtaskloading ? <div className="spinner">
+          <SpinnerCircular enabled={true} color='#000' size={30} thickness={300} />
+        </div> : <div className="Create-data">
+          <Box sx={{ height: 400, width: "100%" }}>
+            <DataGrid
+              style={{ fontFamily: "poppins_medium", fontSize: "18px" }}
+              rows={rows}
+              columns={columns}
+              pageSize={10}
+              rowsPerPageOptions={[5]}
+              autoHeight
+              sortingOrder="null"
+            />
+          </Box>
+        </div>
+      }
       {/* TASK DATA */}
     </>
   );

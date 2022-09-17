@@ -1,21 +1,16 @@
-.task-name > h1 {
+.task-name>h1 {
   font-size: 38px;
-  font-family: "Rokkitt_Bold";
-}
-
-@font-face {
-  font-family: "Rokkitt_Regular";
-  src: url("../../Assets/Fonts/Rokkitt-Regular.ttf");
+  font-family: "poppins_bold";
 }
 
 .task-info {
   display: grid;
-  grid-template-columns: 4fr 2fr;
+  grid-template-columns: 3.5fr 2fr;
   grid-gap: 2rem;
   margin: 20px 20px 20px 20px;
 }
 
-.task-info > div {
+.task-info>div {
   border: 1px solid #f7f7f7;
   padding: 20px 20px 20px 20px;
 }
@@ -46,7 +41,7 @@
   align-items: center;
 }
 
-.asignee-info > div:nth-child(1) {
+.asignee-info>div:nth-child(1) {
   background-color: #f7f7f7;
   width: 40px;
   height: 40px;
@@ -54,12 +49,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Rokkitt_Bold";
+  font-family: "poppins_bold";
 }
 
-.asignee-info > p {
+.asignee-info>p {
   margin-left: 10px;
-  font-family: "Rokkitt_Medium";
+  font-family: "poppins_medium";
 }
 
 .inprogress {
@@ -77,7 +72,7 @@
 }
 
 .dicussion-headline {
-  font-family: "Rokkitt_Medium";
+  font-family: "poppins_medium";
   margin-bottom: 15px;
 }
 
@@ -87,9 +82,9 @@
   flex-direction: row;
 }
 
-.comment-user-info > p {
+.comment-user-info>p {
   margin-left: 1rem;
-  font-family: "Rokkitt_Medium";
+  font-family: "poppins_medium";
 }
 
 .card {
@@ -100,12 +95,17 @@
 }
 
 .comment {
-  font-family: "Rokkitt_Regular";
-  font-size: 16px;
+  font-family: "poppins_regular";
+  font-size: 14px;
   margin-top: 10px;
 }
 
-.comment-user-info > .comment-div {
+.btn{
+  display: flex;
+  justify-content: center;
+}
+
+.comment-user-info>.comment-div {
   background-color: #f7f7f7;
   width: 30px;
   height: 30px;
@@ -113,7 +113,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Rokkitt_Medium";
+  font-family: "poppins_medium";
 }
 
 .comment-ms {
@@ -124,8 +124,8 @@
 
 .redirect {
   text-decoration: none;
-  font-family: "Rokkitt_Medium";
-  font-size: 16px;
+  font-family: "poppins_medium";
+  font-size: 14px;
   color: #551a8b !important;
   cursor: pointer;
 }
@@ -139,23 +139,19 @@
 }
 
 @media screen and (max-width: 992px) {
-  .css-tm8chc {
-    max-width: 100% !important;
-    width: 100% !important;
-  }
   .task-info {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
 .time-scope {
-  margin-top: 2rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
   height: 200px;
   overflow-y: scroll;
   margin-bottom: 2rem;
+  /* margin-top: 2rem; */
 }
 
 .border {
@@ -165,7 +161,8 @@
 }
 
 .time {
-  font-family: "Rokkitt_Regular";
+  font-family: "poppins_regular";
+  font-size: 14px;
 }
 
 .button-send-minutes {
@@ -176,17 +173,75 @@
   margin: auto;
 }
 
-.button-send-minutes > button {
+.button-send-minutes>button {
   margin-bottom: 2rem;
 }
 
 .productive-hours {
-  font-family: "Rokkitt_Regular";
-  font-size: 18px;
+  font-family: "poppins_regular";
+  font-size: 16px;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .done {
   text-align: center;
-  font-family: "Rokkitt_Bold";
+  font-family: "poppins_bold";
   margin-top: 20px;
+}
+
+.start-end-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 1.5rem;
+}
+
+.start-end-grid>div>p {
+  font-family: 'poppins_bold';
+  align-items: center;
+}
+
+@media screen and (max-width: 1369px) {
+  .task-info {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .task-info {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .container-profile {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+@media screen and (max-width:992px) {
+  .task-info {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .css-tm8chc {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .task-name>h1 {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .container-profile {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width:992px) {
+  .container-profile>div:nth-child(2) {
+    margin: auto;
+  }
 }

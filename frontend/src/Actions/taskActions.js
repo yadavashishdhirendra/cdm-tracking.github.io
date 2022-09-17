@@ -217,3 +217,24 @@ export const addHour = (id, hour) => async (dispatch) => {
     });
   }
 };
+
+
+export const addSeconds = (id, seconds) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "addMinutesInTaskRequest",
+    });
+    const { data } = await axios.put(`/api/v2/add/task/minutes/${id}`, {
+      seconds,
+    });
+    dispatch({
+      type: "addMinutesInTaskSuccess",
+      payload: data.message,
+    });
+  } catch (error) {
+    dispatch({
+      type: "addMinutesInTaskFailure",
+      payload: error.response.data.message,
+    });
+  }
+};

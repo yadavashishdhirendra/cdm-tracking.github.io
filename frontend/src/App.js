@@ -9,6 +9,10 @@ import CreateTask from "./components/CreateTask/CreateTask";
 import store from "./store";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import TaskView from "./components/TaskView/TaskView";
+import AdminProtectedRoute from "./components/Route/AdminProtectedRoute";
+import Dashboard from "./components/Admin/Home/Dashboard";
+import Client from "./components/Admin/Clients/Client";
+import Task from "./components/Admin/Tasks/Task";
 
 const App = () => {
   useEffect(() => {
@@ -25,6 +29,11 @@ const App = () => {
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/createtask/:id" element={<CreateTask />} />
           <Route path="/task/details/:id" element={<TaskView />} />
+        </Route>
+        <Route element={<AdminProtectedRoute />}>
+            <Route path="/admindashboard" element={<Dashboard />} />
+            <Route path="/clients/:id" element={<Client />} />
+            <Route path="/task/:id" element={<Task />} />
         </Route>
       </Routes>
     </Router>

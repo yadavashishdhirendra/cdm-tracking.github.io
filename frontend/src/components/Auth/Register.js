@@ -13,7 +13,7 @@ const Register = () => {
   const alert = useAlert();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated, error, loading } = useSelector(
+  const { isAuthenticated, error } = useSelector(
     (state) => state.Authentication
   );
   const [name, setName] = useState("");
@@ -36,7 +36,7 @@ const Register = () => {
       navigate("/");
       alert.success("Register Successfully!");
     }
-  }, [dispatch, error, isAuthenticated]);
+  }, [dispatch, error, isAuthenticated,alert,navigate]);
 
   return (
     <>

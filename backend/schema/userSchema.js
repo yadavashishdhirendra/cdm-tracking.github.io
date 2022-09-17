@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema({
       ref: "task",
     },
   ],
+  userRole: {
+    type: String,
+    default: "User"
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

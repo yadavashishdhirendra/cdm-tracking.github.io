@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   addCommentInTask,
   addHour,
   addMinute,
+  addSeconds,
   getHours,
   getHoursend,
   getSingleTask,
@@ -28,6 +29,7 @@ import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import moment from "moment";
+import { SpinnerCircular } from "spinners-react";
 
 const TaskView = () => {
   const navigate = useNavigate();
@@ -36,18 +38,17 @@ const TaskView = () => {
   const { message: statusMessage, error: statusError } = useSelector(
     (state) => state.updatetask
   );
-  const { message: hourMessage, error: hourError } = useSelector(
+  const { message: hourMessage, error: hourError, loading: hourloading } = useSelector(
     (state) => state.productivehours
   );
-  const { message: EndhourMessage, error: EndhourError } = useSelector(
+  const { message: EndhourMessage, error: EndhourError, loading: loadloading } = useSelector(
     (state) => state.productivehoursend
   );
-  const { task, error, loading } = useSelector((state) => state.singletask);
+  const { task, error } = useSelector((state) => state.singletask);
   const { users } = useSelector((state) => state.taskusers);
   const { starttime } = useSelector((state) => state.gethours);
   const { endtime } = useSelector((state) => state.productivehoursend);
-  console.log("end:", endtime);
-  console.log("STARTS", starttime);
+  const { message: updateProduct } = useSelector((state) => state.minutes)
   const { id } = useParams();
   const {
     message,
@@ -57,17 +58,30 @@ const TaskView = () => {
   const { user } = useSelector((state) => state.Authentication);
 
   console.log(task, "TASKS");
-  let totalMinute = 0;
 
-  let totalHours = 0;
-  task &&
-    task.minutes.forEach((i) => {
-      if (i.minute) {
-        totalMinute += i.minute;
-      } else {
-        totalHours += i.hour;
-      }
-    });
+  let TaskMinutes = 0;
+  let TaskHour = 0;
+  let TaskSeconds = 0;
+
+  task && task.minutes.forEach((time) => {
+    return (
+      TaskMinutes += time.minute
+    )
+  })
+
+  task && task.minutes.forEach((time) => {
+    return (
+      TaskHour += time.hour
+    )
+  })
+
+  task && task.minutes.forEach((time) => {
+    return (
+      TaskSeconds += time.seconds
+    )
+  })
+
+  console.log(TaskHour, TaskMinutes, TaskSeconds, "Balle")
 
   const [email, setEmail] = useState("");
   console.log(email);
@@ -93,81 +107,13 @@ const TaskView = () => {
   };
 
   const sendStartTime = async (e) => {
-    setMinute(0);
     e.preventDefault();
-    let starttime = new Date();
+    let starttime = moment().format("DD/MM/YYYY HH:mm:ss")
     await dispatch(updateProductiveHourTask(id, starttime));
     dispatch(getHours(id));
   };
 
-  let calculated = 0;
-
-  var now = "04/09/2013 15:00:00";
-  var then = "04/09/2013 14:20:30";
-
-  let calculatedDiff = moment
-    .utc(
-      moment(now, "DD/MM/YYYY HH:mm:ss").diff(
-        moment(then, "DD/MM/YYYY HH:mm:ss")
-      )
-    )
-    .format("HH:mm:ss");
-
-  console.log("calculatedDiff", calculatedDiff);
-
-  let hr = 0;
-
-  if (starttime || endtime) {
-    starttime &&
-      starttime.forEach((start) => {
-        return (
-          endtime &&
-          endtime.forEach((end) => {
-            let hourDiif = moment.duration(
-              moment(end.endtime).diff(moment(start.starttime))
-            );
-            var days = parseInt(hourDiif.asDays()); //84
-
-            var hours = parseInt(hourDiif.asHours()); //2039 hours, but it gives total hours in given miliseconds which is not expacted.
-
-            hours = hours - days * 24; // 23 hours
-
-            hr = hours;
-
-            var minutes = parseInt(hourDiif.asMinutes()); //122360 minutes,but it gives total minutes in given miliseconds which is not expacted.
-
-            minutes = minutes - (days * 24 * 60 + hours * 60); //20 minutes.
-
-            calculated = minutes;
-          })
-        );
-      });
-  }
-
-  console.log(hr, "My Diif");
-
-  const [minute, setMinute] = useState(0);
-  const [hour, setHour] = useState(0);
-
-  console.log(status, minute, hour, "sss");
-
-  // let minut = 0;
-  // task.minutes &&
-  //   task.minutes.map((i) => {
-  //     minut += i.minute;
-  //   });
-
-  // console.log(minut, "s");
-
   useEffect(() => {
-    if (calculated !== 0) {
-      setMinute(calculated);
-      setHour(hr);
-      console.log(minute);
-    } else {
-      setMinute(0);
-      setHour(0);
-    }
     if (error) {
       alert.error(error);
     }
@@ -181,7 +127,7 @@ const TaskView = () => {
       dispatch(getUsersEmail(email));
     }
     dispatch(loadUser());
-  }, [dispatch, id, error, alert, email, task, calculated]);
+  }, [dispatch, id, error, alert, email, task]);
 
   useEffect(() => {
     if (commentError) {
@@ -215,12 +161,49 @@ const TaskView = () => {
     alert,
     statusMessage,
     statusError,
-    minute,
   ]);
+
+  let firstArr = []
+  let secondArr = []
+
+  starttime && starttime.forEach((i) => {
+    firstArr.push(i.starttime)
+  })
+
+  endtime && endtime.forEach((i) => {
+    secondArr.push(i.endtime)
+  })
+
+  console.log(firstArr, "MY FIRST ARR")
+  console.log(secondArr, "MY SECOND ARR")
+
+  let lastEleFirstArr = firstArr.pop();
+  console.log(lastEleFirstArr, "First ARR")
+
+  let lastEleSecondArr = secondArr.pop();
+  console.log(lastEleSecondArr, "Second ARR")
+
+  let [hour, setHour] = useState(0)
+  let [minute, setMinute] = useState(0)
+  let [seconds, setSeconds] = useState(0)
+
+
+
+  if (lastEleFirstArr || lastEleSecondArr) {
+    var now = lastEleSecondArr;
+    var then = lastEleFirstArr;
+    let dd = moment.utc(moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(then, "DD/MM/YYYY HH:mm:ss"))).format("HH:mm:ss")
+    console.log(dd, "sss")
+    let splitting = dd.split(":")
+    hour = parseInt(splitting[0])
+    minute = parseInt(splitting[1])
+    seconds = parseInt(splitting[2])
+    console.log(hour, minute, seconds, "all")
+  }
 
   const sendEndTime = async (e) => {
     e.preventDefault();
-    let endtime = new Date();
+    let endtime = moment().format("DD/MM/YYYY HH:mm:ss")
     await dispatch(updateProductiveHourTasks(id, endtime));
     dispatch(getHoursend(id));
   };
@@ -255,23 +238,36 @@ const TaskView = () => {
   }, [
     dispatch,
     hourMessage,
+    EndhourMessage,
+    EndhourError,
     hourError,
     alert,
     id,
-    EndhourError,
-    EndhourMessage,
   ]);
+
+  const sendProductive = () => {
+    dispatch(addHour(id, hour))
+    dispatch(addMinute(id, minute))
+    dispatch(addSeconds(id, seconds))
+  }
+
+  useEffect(() => {
+    if (updateProduct) {
+      alert.success(updateProduct);
+      dispatch(getSingleTask(id));
+      setHour(0)
+      setMinute(0)
+      setSeconds(0)
+      dispatch({
+        type: "UpdateTaskProductiveHoursReset",
+      });
+    }
+  }, [dispatch, updateProduct, alert, id])
+
 
   console.log("USERS", users);
 
-  const sendMinutes = async (e) => {
-    e.preventDefault();
-    await dispatch(addMinute(id, minute));
-    dispatch(addHour(id, hour));
-    dispatch(getSingleTask(id));
-    setMinute(0);
-    setHour(0);
-  };
+
 
   return (
     <>
@@ -282,8 +278,8 @@ const TaskView = () => {
             Create Task
           </p>
           <Typography
-            fontSize={18}
-            fontFamily="Rokkitt_Medium"
+            fontSize={16}
+            fontFamily="poppins_medium"
             color="text.primary"
           >
             Task Details
@@ -314,38 +310,40 @@ const TaskView = () => {
                     label="Comment"
                   />
                   <div className="auto-ms">
-                    <Button type="submit" variant="contained">
-                      Send
-                    </Button>
+                    {
+                      commentLoading ? <SpinnerCircular enabled={true} color='#000' size={30} thickness={300} /> : <Button type="submit" variant="contained">
+                        Send
+                      </Button>
+                    }
                   </div>
                 </form>
               </Box>
               <div className="comment-scroll">
                 {task && task.comments.length > 0
                   ? task.comments.map((comment) => {
-                      return (
-                        <div className="card" key={comment._id}>
-                          <div className="comment-ms">
-                            <div className="comment-user-info">
-                              <div className="comment-div">
-                                <p>
-                                  {comment.user.name.length > 2
-                                    ? comment.user.name.slice(0, 1)
-                                    : comment.user.name}
-                                </p>
-                              </div>
-                              <p>{comment.user.name} Commented</p>
+                    return (
+                      <div className="card" key={comment._id}>
+                        <div className="comment-ms">
+                          <div className="comment-user-info">
+                            <div className="comment-div">
+                              <p>
+                                {comment.user.name.length > 2
+                                  ? comment.user.name.slice(0, 1)
+                                  : comment.user.name}
+                              </p>
                             </div>
-                            <div>
-                              <Button>
-                                <DeleteOutlineIcon />
-                              </Button>
-                            </div>
+                            <p>{comment.user.name} Commented</p>
                           </div>
-                          <p className="comment">- {comment.comment}</p>
+                          <div>
+                            <Button>
+                              <DeleteOutlineIcon />
+                            </Button>
+                          </div>
                         </div>
-                      );
-                    })
+                        <p className="comment">- {comment.comment}</p>
+                      </div>
+                    );
+                  })
                   : null}
               </div>
             </div>
@@ -359,16 +357,9 @@ const TaskView = () => {
                   </div>
                   <p>
                     {users.email === task.reporter
-                      ? users.name + " " + "Assigned You a task!"
+                      ? users.name + " " + "Byself Assigned a Task!"
                       : users.name + " " + "Reporting to" + " " + task.reporter}
                   </p>
-                  {/* <p className="inprogress">
-                    {task.status === "In Progress" ? (
-                      <span className="in">●</span>
-                    ) : (
-                      <span className="out">●</span>
-                    )}
-                  </p> */}
                 </div>
               )}
               <div>
@@ -418,12 +409,14 @@ const TaskView = () => {
                       onClick={(e) => sendStartTime(e)}
                       type="submit"
                       variant="contained"
+                    // disabled={hourloading || loadloading ? true : false}
                     >
                       Start
                     </Button>
                     <Button
                       onClick={(e) => sendEndTime(e)}
                       type="submit"
+                      // disabled={hourloading || loadloading ? true : false}
                       variant="contained"
                     >
                       Stop
@@ -431,57 +424,52 @@ const TaskView = () => {
                   </>
                 ) : null}
               </div>
+              <div className="start-end-grid">
+                <div>
+                  <p>Start Time:</p>
+                </div>
+                <div>
+                  <p>End Time:</p>
+                </div>
+              </div>
               <div className="time-scope">
                 <div>
                   {starttime && starttime.length > 0
                     ? starttime.map((time) => {
-                        return (
-                          <div key={time._id}>
-                            <div className="border">
-                              <p className="time">
-                                Start:{" "}
-                                {moment(time.starttime).format(
-                                  "DD/MM/YYYY hh:mm:ss a"
-                                )}
-                              </p>
-                            </div>
+                      return (
+                        <div key={time._id}>
+                          <div className="border">
+                            <p className="time">
+                              {/* Start:{" "} */}
+                              {time.starttime}
+                            </p>
                           </div>
-                        );
-                      })
+                        </div>
+                      );
+                    })
                     : null}
                 </div>
                 <div>
                   {endtime && endtime.length > 0
                     ? endtime.map((time) => {
-                        return (
-                          <div key={time._id}>
-                            <div className="border">
-                              <p className="time">
-                                End:{" "}
-                                {moment(time.endtime).format(
-                                  "DD/MM/YYYY hh:mm:ss a"
-                                )}
-                              </p>
-                            </div>
+                      return (
+                        <div key={time._id}>
+                          <div className="border">
+                            <p className="time">
+                              {/* End:{" "} */}
+                              {time.endtime}
+                            </p>
                           </div>
-                        );
-                      })
+                        </div>
+                      );
+                    })
                     : null}
                 </div>
               </div>
-              <div className="button-send-minutes">
-                <Button
-                  type="submit"
-                  variant="outlined"
-                  onClick={(e) => sendMinutes(e)}
-                >
-                  Submit
-                </Button>
-                <h5 className="productive-hours">
-                  Total Productive Hours: {totalHours} hrs {totalMinute}{" "}
-                  minutes.
-                </h5>
+              <div className="btn">
+                <Button type="submit" variant="contained" onClick={sendProductive}>Send Productive Time</Button>
               </div>
+              <h4 className="productive-hours">{TaskHour} Hour {TaskMinutes} Minutes {TaskSeconds} Seconds</h4>
             </div>
           </div>
         </>
@@ -491,3 +479,5 @@ const TaskView = () => {
 };
 
 export default TaskView;
+
+

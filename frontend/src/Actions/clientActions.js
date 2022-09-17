@@ -80,3 +80,22 @@ export const deleteClientWithTask = (id) => async (dispatch) => {
     });
   }
 };
+
+
+export const getClients = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "getAllClientsRequest",
+    });
+    const { data } = await axios.get(`/api/v2/user/client/${id}`);
+    dispatch({
+      type: "getAllClientsSuccess",
+      payload: data.clients,
+    });
+  } catch (error) {
+    dispatch({
+      type: "getAllClientsFailure",
+      payload: error.response.data.message,
+    });
+  }
+};
