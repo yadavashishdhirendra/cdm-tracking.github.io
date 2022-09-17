@@ -13,10 +13,16 @@ import AdminProtectedRoute from "./components/Route/AdminProtectedRoute";
 import Dashboard from "./components/Admin/Home/Dashboard";
 import Client from "./components/Admin/Clients/Client";
 import Task from "./components/Admin/Tasks/Task";
+import WebFont from 'webfontloader';
 
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
+    WebFont.load({
+      google: {
+        families: ['Poppins', 'sans-serif']
+      }
+    })
   }, []);
 
   return (

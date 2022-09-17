@@ -145,7 +145,8 @@ const Task = () => {
                         </p>
                         <Typography
                             fontSize={14}
-                            fontFamily="poppins_medium"
+                            fontFamily="'Poppins', 'sans-serif'"
+                            fontWeight={600}
                             color="text.primary"
                         >
                             Task List
@@ -164,7 +165,7 @@ const Task = () => {
                         </div>
                         <Box sx={{ height: 400, width: "100%" }}>
                             <DataGrid
-                                style={{ fontFamily: "poppins_medium", fontSize: "18px" }}
+                                style={{ fontFamily: "'Poppins', 'sans-serif'", fontSize: "18px" }}
                                 rows={rows}
                                 columns={columns}
                                 pageSize={10}

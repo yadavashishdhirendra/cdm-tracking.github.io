@@ -1,6 +1,7 @@
 .task-name>h1 {
-  font-size: 38px;
-  font-family: "poppins_bold";
+  font-size: 34px;
+  font-family: 'Poppins', 'sans-serif';
+  font-weight: bold;
 }
 
 .task-info {
@@ -49,12 +50,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "poppins_bold";
+  font-family: 'Poppins', 'sans-serif';
+  font-weight: bold;
 }
 
 .asignee-info>p {
   margin-left: 10px;
-  font-family: "poppins_medium";
+  font-family: 'Poppins', 'sans-serif';
+  font-weight: 600;
 }
 
 .inprogress {
@@ -72,7 +75,8 @@
 }
 
 .dicussion-headline {
-  font-family: "poppins_medium";
+  font-family: 'Poppins', 'sans-serif';
+  font-weight: 600;
   margin-bottom: 15px;
 }
 
@@ -84,7 +88,8 @@
 
 .comment-user-info>p {
   margin-left: 1rem;
-  font-family: "poppins_medium";
+  font-family: 'Poppins', 'sans-serif';
+  font-weight: 600;
 }
 
 .card {
@@ -113,7 +118,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "poppins_medium";
+  font-family: 'Poppins', 'sans-serif';
+  font-weight: 600;
 }
 
 .comment-ms {
@@ -124,7 +130,8 @@
 
 .redirect {
   text-decoration: none;
-  font-family: "poppins_medium";
+  font-family: 'Poppins', 'sans-serif';
+  font-weight: 600;
   font-size: 14px;
   color: #551a8b !important;
   cursor: pointer;
@@ -160,8 +167,9 @@
   padding: 8px 10px 8px 10px;
 }
 
+
 .time {
-  font-family: "poppins_regular";
+  font-family:'Poppins', 'sans-serif';
   font-size: 14px;
 }
 
@@ -178,7 +186,7 @@
 }
 
 .productive-hours {
-  font-family: "poppins_regular";
+  font-family: 'Poppins', 'sans-serif';
   font-size: 16px;
   margin-top: 20px;
   text-align: center;
@@ -186,7 +194,8 @@
 
 .done {
   text-align: center;
-  font-family: "poppins_bold";
+  font-family: 'Poppins', 'sans-serif';
+  font-weight: bold;
   margin-top: 20px;
 }
 
@@ -197,7 +206,8 @@
 }
 
 .start-end-grid>div>p {
-  font-family: 'poppins_bold';
+  font-family: 'Poppins', 'sans-serif';
+  font-weight: bold;
   align-items: center;
 }
 

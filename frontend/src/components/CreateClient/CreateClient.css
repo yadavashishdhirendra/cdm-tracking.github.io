@@ -6,7 +6,8 @@
 
 .create-client > button {
   background-color: #423f8d !important;
-  font-family: "poppins_medium";
+  font-family: 'Poppins', 'sans-serif';
+  font-weight: 600;
   font-size: 14px;
 }
 
@@ -15,7 +16,8 @@
 }
 
 .create-para>h2{
-  font-family: 'poppins_bold';
+  font-family: 'Poppins', 'sans-serif';
+  font-weight: bold;
 }
 
 .create-para{
@@ -27,7 +29,8 @@
   font-size: 30px !important;
   letter-spacing: 0.03em;
   line-height: 1.2195;
-  font-family: "poppins_bold" !important;
+  font-family: 'Poppins', 'sans-serif' !important;
+  font-weight: bold !important;
 }
 
 .create-client .create-para h2 span {
@@ -35,7 +38,8 @@
 }
 
 #demo-select-small {
-  font-family: "poppins_medium" !important;
+  font-family: 'Poppins', 'sans-serif' !important;
+  font-weight: 600 !important;
 }
 
 .submit-button {

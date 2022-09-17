@@ -35,12 +35,14 @@
 }
 
 .cards-live-content>div>p:nth-child(2) {
-    font-family: "poppins_bold";
+    font-family: 'Poppins', 'sans-serif';
+    font-weight: bold;
     font-size: 16px;
 }
 
 .cards-live-content>div>p:nth-child(3) {
-    font-family: "poppins_bold";
+    font-family: 'Poppins', 'sans-serif';
+    font-weight: bold;
     font-size: 16px;
     margin-top: 0.5rem;
 }
@@ -100,7 +102,8 @@
 }
 
 .Create-data>div>h3 {
-    font-family: 'poppins_bold';
+    font-family: 'Poppins', 'sans-serif';
+    font-weight: bold;
     margin-right: 0.5rem;
 }
 

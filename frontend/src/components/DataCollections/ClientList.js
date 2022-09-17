@@ -131,7 +131,7 @@ const CreateList = () => {
         </div> : <div className="Create-data">
           <Box sx={{ height: 400, width: "100%" }}>
             <DataGrid
-              style={{ fontFamily: "poppins_medium", fontSize: "18px" }}
+              style={{ fontFamily: "'Poppins', 'sans-serif'", fontSize: "18px" }}
               rows={rows}
               columns={columns}
               pageSize={10}

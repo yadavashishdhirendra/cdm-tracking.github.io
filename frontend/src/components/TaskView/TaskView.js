@@ -279,7 +279,8 @@ const TaskView = () => {
           </p>
           <Typography
             fontSize={16}
-            fontFamily="poppins_medium"
+            fontFamily="'Poppins', 'sans-serif'"
+            fontWeight={600}
             color="text.primary"
           >
             Task Details
@@ -374,7 +375,7 @@ const TaskView = () => {
                     >
                       <InputLabel
                         id="demo-select-small"
-                        style={{ fontFamily: "Rokkitt_Medium", fontSize: 18 }}
+                        style={{ fontFamily: "'Poppins', 'sans-serif'",fontWeight:600, fontSize: 18 }}
                         onChange={handleStatusChange}
                       >
                         Status

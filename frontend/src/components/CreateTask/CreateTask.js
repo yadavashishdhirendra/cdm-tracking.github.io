@@ -243,7 +243,8 @@ const CreateTask = () => {
           </Link>
           <Typography
             fontSize={14}
-            fontFamily="poppins_medium"
+            fontFamily="'Poppins', 'sans-serif'"
+            fontWeight={600}
             color="text.primary"
           >
             Create Task
@@ -268,7 +269,7 @@ const CreateTask = () => {
         >
           <Box sx={style}>
             <div className="create-task">
-              <h2 style={{ fontFamily: "poppins_bold", fontSize: 18 }}>
+              <h2 style={{ fontFamily: "'Poppins', 'sans-serif'",fontWeight: 600, fontSize: 18 }}>
                 CREATE TASK!{" "}
               </h2>
               <span>
@@ -295,7 +296,7 @@ const CreateTask = () => {
                 <FormControl sx={{ mb: 3, minWidth: 300 }} size="small">
                   <InputLabel
                     id="demo-select-small"
-                    style={{ fontFamily: "poppins_medium", fontSize: 18 }}
+                    style={{ fontFamily: "'Poppins', 'sans-serif'",fontWeight: 600, fontSize: 18 }}
                     onChange={(e) => setPriority(e.target.value)}
                   >
                     Priority
@@ -336,7 +337,7 @@ const CreateTask = () => {
                 <FormControl sx={{ mb: 3, minWidth: 300 }} size="small">
                   <InputLabel
                     id="demo-select-small"
-                    style={{ fontFamily: "Rokkitt_Medium", fontSize: 18 }}
+                    style={{ fontFamily: "'Poppins', 'sans-serif'",fontWeight: 600, fontSize: 18 }}
                   >
                     Assignee
                   </InputLabel>
@@ -360,7 +361,7 @@ const CreateTask = () => {
                 <FormControl sx={{ mb: 3, minWidth: 300 }} size="small">
                   <InputLabel
                     id="demo-select-small"
-                    style={{ fontFamily: "Rokkitt_Medium", fontSize: 18 }}
+                    style={{ fontFamily: "'Poppins', 'sans-serif'",fontWeight: 600, fontSize: 18 }}
                   >
                     Reporter
                   </InputLabel>
@@ -384,7 +385,7 @@ const CreateTask = () => {
                 <Button
                   className="submit-button"
                   type="submit"
-                  style={{ fontFamily: "Rokkitt_Medium", fontSize: 18 }}
+                  style={{ fontFamily: "'Poppins', 'sans-serif'",fontWeight: 600, fontSize: 18 }}
                   variant="contained"
                   endIcon={<AddCardIcon />}
                 >
@@ -404,7 +405,7 @@ const CreateTask = () => {
         </div> : <div className="Create-data">
           <Box sx={{ height: 400, width: "100%" }}>
             <DataGrid
-              style={{ fontFamily: "poppins_medium", fontSize: "18px" }}
+              style={{ fontFamily: "'Poppins', 'sans-serif'", fontSize: "18px" }}
               rows={rows}
               columns={columns}
               pageSize={10}

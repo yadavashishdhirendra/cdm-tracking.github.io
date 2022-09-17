@@ -11,7 +11,8 @@
 
 .redirect {
   text-decoration: none;
-  font-family: "poppins_medium";
+  font-family: 'Poppins', 'sans-serif';
+  font-weight: 600;
   font-size: 16px;
 }
 
@@ -28,7 +29,8 @@
   font-size: 30px !important;
   letter-spacing: 0.03em;
   line-height: 1.2195;
-  font-family: "poppins_bold" !important;
+  font-family: 'Poppins', 'sans-serif' !important;
+  font-weight: bold !important;
 }
 
 .create-task h2 span {
@@ -53,7 +55,8 @@
 }
 
 .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
-  font-family: "poppins_medium " !important;
+  font-family: 'Poppins', 'sans-serif' !important;
+  font-weight: 600 !important;
 }
 
 .css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
