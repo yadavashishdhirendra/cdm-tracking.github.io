@@ -138,3 +138,55 @@ exports.getAllclients = async (req, res) => {
     });
   }
 }
+
+exports.getSingleClients = async (req, res) => {
+  try {
+    const clients = await Client.findById(req.params.id);
+
+    if (!clients) {
+      return res.status(400).json({
+        success: false,
+        message: "Client Not Found!"
+      })
+    }
+
+    return res.status(200).json({
+      success: true,
+      clients
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}
+
+exports.updateClient = async (req, res) => {
+  try {
+    const clientupdate = {
+      clientname: req.body.clientname,
+      clientemail: req.body.clientemail,
+      service: req.body.service,
+      mobileno: req.body.mobileno
+    }
+
+    const update = await Client.findByIdAndUpdate(req.params.id, clientupdate, {
+      new: true,
+      runValidators: false,
+      useFindAndModify: false
+    })
+
+    return res.status(200).json({
+      success: true,
+      update,
+      message: "Client Updated Successfully!"
+    })
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}

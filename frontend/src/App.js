@@ -14,6 +14,8 @@ import Dashboard from "./components/Admin/Home/Dashboard";
 import Client from "./components/Admin/Clients/Client";
 import Task from "./components/Admin/Tasks/Task";
 import WebFont from 'webfontloader';
+import EditTask from "./components/EditComponent/EditTask";
+import EditClient from "./components/EditComponent/EditClient";
 
 const App = () => {
   useEffect(() => {
@@ -35,6 +37,8 @@ const App = () => {
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/createtask/:id" element={<CreateTask />} />
           <Route path="/task/details/:id" element={<TaskView />} />
+          <Route path="/task/edit/:id" element={<EditTask />} />
+          <Route path="/client/edit/:id" element={<EditClient />} />
         </Route>
         <Route element={<AdminProtectedRoute />}>
             <Route path="/admindashboard" element={<Dashboard />} />

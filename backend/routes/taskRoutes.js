@@ -12,6 +12,9 @@ const {
   getDelayedTask,
   minutesScorePerTask,
   getAllTask,
+  addLinks,
+  updateTask,
+  getTaskNotification,
 } = require("../controller/taskController");
 const router = express.Router();
 
@@ -28,6 +31,9 @@ router
 router.route("/get/hours/:id").get(isAuthenticated, getProductiveHours);
 router.route("/get/delayed/task").get(isAuthenticated, getDelayedTask);
 router.route("/add/task/minutes/:id").put(isAuthenticated, minutesScorePerTask);
+router.route("/add/link/:id").put(isAuthenticated, addLinks);
 router.route("/all/tasks").get(isAuthenticated, getAllTask);
+router.route("/update/task/:id").put(isAuthenticated, updateTask);
+router.route("/get/task/notification").get(isAuthenticated, getTaskNotification);
 
 module.exports = router;

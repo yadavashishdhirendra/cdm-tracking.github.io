@@ -99,3 +99,21 @@ export const getAllClients = createReducer(initialState, {
     state.error = null;
   },
 });
+
+export const getSingleClients = createReducer(initialState, {
+  // LOGIN
+  getClientDetailsRequest: (state) => {
+    state.loading = true;
+  },
+  getClientDetailsSuccess: (state, action) => {
+    state.loading = false;
+    state.clients = action.payload;
+  },
+  getClientDetailsFailure: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+  clearErrors: (state) => {
+    state.error = null;
+  },
+});

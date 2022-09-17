@@ -31,7 +31,7 @@ import { getAllUsers } from "../../Actions/userActions";
 import { useAlert } from "react-alert";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { SpinnerCircular } from "spinners-react";
-
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 //  for select
 
 const style = {
@@ -122,7 +122,7 @@ const CreateTask = () => {
     }
     dispatch(getSingleClientTasks(id));
     dispatch(getAllUsers());
-  }, [dispatch, id, createtaskerror, createtask,alert]);
+  }, [dispatch, id, createtaskerror, createtask, alert]);
 
   // TASK GRID
   const columns = [
@@ -131,43 +131,43 @@ const CreateTask = () => {
       field: "Task",
       headerName: "Task",
       width: "200",
-      flex:1
+      flex: 1
     },
     {
       field: "Priority",
       headerName: "Priority",
       width: 100,
-      flex:1
+      flex: 1
     },
     {
       field: "IssueDate",
       headerName: "Issue Date",
       width: 150,
-      flex:1
+      flex: 1
     },
     {
       field: "DeliveryDate",
       headerName: "Delivery Date",
       width: 150,
-      flex:1
+      flex: 1
     },
     {
       field: "Asignee",
       headerName: "Asignee",
       width: 200,
-      flex:1
+      flex: 1
     },
     {
       field: "Reporter",
       headerName: "Reporter",
       width: 200,
-      flex:1
+      flex: 1
     },
     {
       field: "Status",
       headerName: "Status",
       width: 150,
-      flex:1,
+      flex: 1,
       cellClassName: (params) => {
         return params.getValue(params.id, "Status") === "Done"
           ? "green"
@@ -178,7 +178,7 @@ const CreateTask = () => {
       field: "Actions",
       headerName: "Actions",
       width: 200,
-      flex:1.5,
+      flex: 1.5,
       renderCell: (params) => {
         return (
           <div className="button-div">
@@ -205,6 +205,19 @@ const CreateTask = () => {
               >
                 <Button>
                   <DeleteIcon />
+                </Button>
+              </Tooltip>
+            </Link>
+            <Link to={`/task/edit/${params.getValue(params.id, "id")}`}>
+              <Tooltip
+                title="Update"
+                placement="top-start"
+                followCursor
+                TransitionComponent={Fade}
+                TransitionProps={{ timeout: 600 }}
+              >
+                <Button>
+                  <EditOutlinedIcon />
                 </Button>
               </Tooltip>
             </Link>
@@ -269,12 +282,12 @@ const CreateTask = () => {
         >
           <Box sx={style}>
             <div className="create-task">
-              <h2 style={{ fontFamily: "'Poppins', 'sans-serif'",fontWeight: 600, fontSize: 18 }}>
+              <h2 style={{ fontFamily: "'Poppins', 'sans-serif'", fontWeight: 600, fontSize: 18 }}>
                 CREATE TASK!{" "}
               </h2>
               <span>
-                  <DriveFileRenameOutlineIcon />
-                </span>
+                <DriveFileRenameOutlineIcon />
+              </span>
             </div>
 
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -296,7 +309,7 @@ const CreateTask = () => {
                 <FormControl sx={{ mb: 3, minWidth: 300 }} size="small">
                   <InputLabel
                     id="demo-select-small"
-                    style={{ fontFamily: "'Poppins', 'sans-serif'",fontWeight: 600, fontSize: 18 }}
+                    style={{ fontFamily: "'Poppins', 'sans-serif'", fontWeight: 600, fontSize: 18 }}
                     onChange={(e) => setPriority(e.target.value)}
                   >
                     Priority
@@ -337,7 +350,7 @@ const CreateTask = () => {
                 <FormControl sx={{ mb: 3, minWidth: 300 }} size="small">
                   <InputLabel
                     id="demo-select-small"
-                    style={{ fontFamily: "'Poppins', 'sans-serif'",fontWeight: 600, fontSize: 18 }}
+                    style={{ fontFamily: "'Poppins', 'sans-serif'", fontWeight: 600, fontSize: 18 }}
                   >
                     Assignee
                   </InputLabel>
@@ -361,7 +374,7 @@ const CreateTask = () => {
                 <FormControl sx={{ mb: 3, minWidth: 300 }} size="small">
                   <InputLabel
                     id="demo-select-small"
-                    style={{ fontFamily: "'Poppins', 'sans-serif'",fontWeight: 600, fontSize: 18 }}
+                    style={{ fontFamily: "'Poppins', 'sans-serif'", fontWeight: 600, fontSize: 18 }}
                   >
                     Reporter
                   </InputLabel>
@@ -385,7 +398,7 @@ const CreateTask = () => {
                 <Button
                   className="submit-button"
                   type="submit"
-                  style={{ fontFamily: "'Poppins', 'sans-serif'",fontWeight: 600, fontSize: 18 }}
+                  style={{ fontFamily: "'Poppins', 'sans-serif'", fontWeight: 600, fontSize: 18 }}
                   variant="contained"
                   endIcon={<AddCardIcon />}
                 >

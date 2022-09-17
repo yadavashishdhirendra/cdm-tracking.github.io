@@ -17,7 +17,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import moment from 'moment'
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
-import Header from '../../Header/Header'
+import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 
 const Dashboard = () => {
   const dispatch = useDispatch()
@@ -81,6 +81,19 @@ const Dashboard = () => {
               >
                 <Button>
                   <DeleteIcon />
+                </Button>
+              </Tooltip>
+            </Link>
+            <Link to="">
+              <Tooltip
+                title="User"
+                placement="top-start"
+                followCursor
+                TransitionComponent={Fade}
+                TransitionProps={{ timeout: 600 }}
+              >
+                <Button>
+                  <PermIdentityOutlinedIcon />
                 </Button>
               </Tooltip>
             </Link>

@@ -15,6 +15,7 @@ import {
 } from "../../Actions/clientActions";
 import { useAlert } from "react-alert";
 import { SpinnerCircular } from 'spinners-react';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 const CreateList = () => {
   const alert = useAlert();
@@ -85,6 +86,19 @@ const CreateList = () => {
                 <DeleteIcon />
               </Button>
             </Tooltip>
+            <Link to={`/client/edit/${params.getValue(params.id, "id")}`}>
+              <Tooltip
+                title="Update"
+                placement="top-start"
+                followCursor
+                TransitionComponent={Fade}
+                TransitionProps={{ timeout: 600 }}
+              >
+                <Button>
+                  <EditOutlinedIcon />
+                </Button>
+              </Tooltip>
+            </Link>
           </div>
         );
       },

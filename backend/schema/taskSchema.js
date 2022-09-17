@@ -37,56 +37,62 @@ const taskSchema = new mongoose.Schema({
     type: String,
     default: "Todo",
   },
-  comments: [
-    {
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-      comment: {
-        type: String,
-        required: true,
-      },
+  comments: [{
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
-  ],
-  productiveStart: [
-    {
-      starttime: {
-        type: String,
-      },
-      date: {
-        type: String,
-        default: date,
-      },
+    comment: {
+      type: String,
+      required: true,
     },
-  ],
-  productiveEnd: [
-    {
-      endtime: {
-        type: String,
-      },
-      date: {
-        type: String,
-        default: date,
-      },
+  }, ],
+  productiveStart: [{
+    starttime: {
+      type: String,
     },
-  ],
-  minutes: [
-    {
-      hour: {
-        type: Number,
-        default: 0
-      },
-      minute: {
-        type: Number,
-        default: 0
-      },
-      seconds: {
-        type: Number,
-        default: 0
-      },
+    date: {
+      type: String,
+      default: date,
     },
-  ],
+  }, ],
+  productiveEnd: [{
+    endtime: {
+      type: String,
+    },
+    date: {
+      type: String,
+      default: date,
+    },
+  }, ],
+  minutes: [{
+    hour: {
+      type: Number,
+      default: 0
+    },
+    minute: {
+      type: Number,
+      default: 0
+    },
+    seconds: {
+      type: Number,
+      default: 0
+    },
+  }, ],
+  alllinks: [{
+    link: {
+      type: String,
+      required: true
+    }
+  }],
+  momentDate: {
+    type: String,
+    default: date
+  },
+  updateTrack: {
+    type: String,
+    default: "Task Updated"
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

@@ -4,11 +4,13 @@ import {
   deleteclient,
   getAllClients,
   getOwnClientReducer,
+  getSingleClients,
   getsingleClientTask,
 } from "./Reducers/clientReducer";
 import {
   addComment,
   addHour,
+  addLink,
   addMinutes,
   createTaskReducer,
   getDelayedTask,
@@ -45,7 +47,9 @@ const store = configureStore({
     delayedTask: getDelayedTask,
     minutes: addMinutes,
     hour: addHour,
-    clients: getAllClients
+    clients: getAllClients,
+    link: addLink,
+    clientdetails: getSingleClients
   },
 });
 

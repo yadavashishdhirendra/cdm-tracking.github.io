@@ -238,3 +238,24 @@ export const addSeconds = (id, seconds) => async (dispatch) => {
     });
   }
 };
+
+
+export const addLink = (id,link) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "addLinkRequest",
+    });
+    const { data } = await axios.put(`/api/v2/add/link/${id}`,{
+      link
+    });
+    dispatch({
+      type: "addLinkSuccess",
+      payload: data.message,
+    });
+  } catch (error) {
+    dispatch({
+      type: "addLinkFailure",
+      payload: error.response.data.message,
+    });
+  }
+};

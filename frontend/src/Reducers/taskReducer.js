@@ -226,3 +226,26 @@ export const addHour = createReducer(initialState, {
     state.error = null;
   },
 });
+
+
+export const addLink = createReducer(initialState, {
+  // LOGIN
+  addLinkRequest: (state) => {
+    state.loading = true;
+  },
+  addLinkSuccess: (state, action) => {
+    state.loading = false;
+    state.message = action.payload;
+  },
+  addLinkFailure: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+  addLinkReset: (state) => {
+    state.loading = false;
+    state.message = null;
+  },
+  clearErrors: (state) => {
+    state.error = null;
+  },
+});

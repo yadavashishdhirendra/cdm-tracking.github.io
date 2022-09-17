@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import {
   addCommentInTask,
   addHour,
+  addLink,
   addMinute,
   addSeconds,
   getHours,
@@ -44,6 +45,7 @@ const TaskView = () => {
   const { message: EndhourMessage, error: EndhourError, loading: loadloading } = useSelector(
     (state) => state.productivehoursend
   );
+  const { message: linkmessage, error: linkerror, loading: linkLoading } = useSelector((state) => state.link)
   const { task, error } = useSelector((state) => state.singletask);
   const { users } = useSelector((state) => state.taskusers);
   const { starttime } = useSelector((state) => state.gethours);
@@ -93,6 +95,8 @@ const TaskView = () => {
     dispatch(getSingleTask(id));
     setComment("");
   };
+
+  const [link, setLink] = useState("")
 
   const [status, setStatus] = useState("");
 
@@ -201,6 +205,12 @@ const TaskView = () => {
     console.log(hour, minute, seconds, "all")
   }
 
+  const handleLink = async (e) => {
+    e.preventDefault()
+    await dispatch(addLink(id, link))
+    dispatch(getSingleTask(id));
+  }
+
   const sendEndTime = async (e) => {
     e.preventDefault();
     let endtime = moment().format("DD/MM/YYYY HH:mm:ss")
@@ -249,20 +259,32 @@ const TaskView = () => {
     dispatch(addHour(id, hour))
     dispatch(addMinute(id, minute))
     dispatch(addSeconds(id, seconds))
+    setHour(0)
+    setMinute(0)
+    setSeconds(0)
   }
 
   useEffect(() => {
     if (updateProduct) {
       alert.success(updateProduct);
-      dispatch(getSingleTask(id));
-      setHour(0)
-      setMinute(0)
-      setSeconds(0)
       dispatch({
         type: "UpdateTaskProductiveHoursReset",
       });
+      dispatch(getSingleTask(id));
     }
-  }, [dispatch, updateProduct, alert, id])
+    if (linkmessage) {
+      alert.success(linkmessage)
+      dispatch({
+        type: "addLinkReset"
+      })
+    }
+    if (linkerror) {
+      alert.error(linkerror)
+      dispatch({
+        type: "clearErrors"
+      })
+    }
+  }, [dispatch, updateProduct, alert, id, linkmessage, linkerror])
 
 
   console.log("USERS", users);
@@ -303,6 +325,19 @@ const TaskView = () => {
                 }}
               >
                 <h4 className="dicussion-headline">Let's Discuss!</h4>
+                <form className="add-link" onSubmit={(e) => handleLink(e)}>
+                  <TextField
+                    value={link}
+                    onChange={(e) => setLink(e.target.value)}
+                    fullWidth
+                    label="Add Link"
+                  />
+                  <div>
+                    <Button type="submit" variant="contained">
+                      Add Link
+                    </Button>
+                  </div>
+                </form>
                 <form onSubmit={(e) => handleComment(e)}>
                   <TextField
                     value={comment}
@@ -347,6 +382,18 @@ const TaskView = () => {
                   })
                   : null}
               </div>
+              <div className="link-storage">
+                <h4>Link Storage: </h4>
+                {
+                  task && task.alllinks.length > 0 ? task.alllinks.map((i) => {
+                    return (
+                      <div className="link-storage" key={i._id}>
+                        <Link to={`${i.link}`}>{i.link}</Link>
+                      </div>
+                    )
+                  }) : null
+                }
+              </div>
             </div>
             <div>
               {users && (
@@ -364,47 +411,49 @@ const TaskView = () => {
                 </div>
               )}
               <div>
-                <form
-                  className="status-progress"
-                  onSubmit={(e) => handleStatusUpdate(e)}
-                >
-                  <div>
-                    <FormControl
-                      sx={{ mt: 3, mb: 3, minWidth: "100%" }}
-                      size="small"
-                    >
-                      <InputLabel
-                        id="demo-select-small"
-                        style={{ fontFamily: "'Poppins', 'sans-serif'",fontWeight:600, fontSize: 18 }}
-                        onChange={handleStatusChange}
+                {
+                  task && task.status === 'Done' && user.userRole === 'User' ? null  :<form
+                    className="status-progress"
+                    onSubmit={(e) => handleStatusUpdate(e)}
+                  >
+                    <div>
+                      <FormControl
+                        sx={{ mt: 3, mb: 3, minWidth: "100%" }}
+                        size="small"
                       >
-                        Status
-                      </InputLabel>
-                      <Select
-                        labelId="demo-select-small"
-                        id="demo-select-small"
-                        label="Status"
-                        value={status}
-                        onChange={(e) => setStatus(e.target.value)}
-                      >
-                        <MenuItem value="Todo">Todo</MenuItem>
-                        <MenuItem value="In Progress">In Progress</MenuItem>
-                        <MenuItem value="Done">Done</MenuItem>
-                        {user.email === task.reporter ? (
-                          <MenuItem value="Extension">Extension</MenuItem>
-                        ) : null}
-                      </Select>
-                    </FormControl>
-                  </div>
-                  <div>
-                    <Button type="submit" variant="contained">
-                      Update
-                    </Button>
-                  </div>
-                </form>
+                        <InputLabel
+                          id="demo-select-small"
+                          style={{ fontFamily: "'Poppins', 'sans-serif'", fontWeight: 600, fontSize: 18 }}
+                          onChange={handleStatusChange}
+                        >
+                          Status
+                        </InputLabel>
+                        <Select
+                          labelId="demo-select-small"
+                          id="demo-select-small"
+                          label="Status"
+                          value={status}
+                          onChange={(e) => setStatus(e.target.value)}
+                        >
+                          <MenuItem value="Todo">Todo</MenuItem>
+                          <MenuItem value="In Progress">In Progress</MenuItem>
+                          <MenuItem value="Done">Done</MenuItem>
+                          {user.email === task.reporter ? (
+                            <MenuItem value="Extension">Extension</MenuItem>
+                          ) : null}
+                        </Select>
+                      </FormControl>
+                    </div>
+                    <div>
+                      <Button type="submit" variant="contained">
+                        Update
+                      </Button>
+                    </div>
+                  </form>
+                }
               </div>
               <div className="button-spacearound">
-                {task.status === "In Progress" ? (
+                {task.status === "In Progress" || task.status === 'Extension' ? (
                   <>
                     <Button
                       onClick={(e) => sendStartTime(e)}

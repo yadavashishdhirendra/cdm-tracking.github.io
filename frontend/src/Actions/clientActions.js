@@ -99,3 +99,21 @@ export const getClients = (id) => async (dispatch) => {
     });
   }
 };
+
+export const getSingleClient = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "getClientDetailsRequest",
+    });
+    const { data } = await axios.get(`/api/v2/get/clients/details/${id}`);
+    dispatch({
+      type: "getClientDetailsSuccess",
+      payload: data.clients,
+    });
+  } catch (error) {
+    dispatch({
+      type: "getClientDetailsFailure",
+      payload: error.response.data.message,
+    });
+  }
+};

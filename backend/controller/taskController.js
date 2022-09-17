@@ -284,3 +284,95 @@ exports.getAllTask = async (req, res) => {
     });
   }
 }
+
+exports.addLinks = async (req, res) => {
+  try {
+    let task = await Task.findById(req.params.id);
+
+    if (!task) {
+      return res.status(400).json({
+        success: false,
+        message: "Task Not Found!",
+      });
+    }
+
+    const { link } = req.body;
+    if (!link) {
+      return res.status(400).json({
+        success: false,
+        message: "Please Add Link!",
+      });
+    }
+
+    task.alllinks.push({
+      link: link,
+    });
+
+    await task.save();
+    return res.status(200).json({
+      success: true,
+      message: "Link Added Succesfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+
+exports.updateTask = async (req, res) => {
+  try {
+    const taskupdate = {
+      taskname: req.body.taskname,
+      priority: req.body.priority,
+      startdate: req.body.startdate,
+      enddate: req.body.enddate,
+      email: req.body.email,
+      reporter: req.body.reporter
+    }
+
+    const update = await Task.findByIdAndUpdate(req.params.id, taskupdate, {
+      new: true,
+      runValidators: false,
+      useFindAndModify: false
+    })
+
+    return res.status(200).json({
+      success: true,
+      update,
+      message: "Task Updated Successfully!"
+    })
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}
+
+exports.getTaskNotification = async (req, res) => {
+  try {
+    let user = await User.findById(req.user.id);
+
+    let date = moment(new Date()).format("DD/MM/YYYY");
+    console.log(date)
+
+    let task = await Task.find({
+      owner: user,
+      momentDate: moment(new Date()).format("DD/MM/YYYY")
+    })
+
+    return res.status(200).json({
+      success: true,
+      task
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}
