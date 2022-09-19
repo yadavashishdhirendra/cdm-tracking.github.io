@@ -16,16 +16,20 @@ const userSchema = new mongoose.Schema({
     required: true,
     select: false,
   },
-  task: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "task",
-    },
-  ],
+  task: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "task",
+  }, ],
   userRole: {
     type: String,
     default: "User"
   },
+  notifyTask: [{
+    tasks: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "task",
+    }
+  }],
   createdAt: {
     type: Date,
     default: Date.now(),
@@ -42,8 +46,7 @@ userSchema.pre("save", async function (next) {
 
 // GENERATING TOKEN WHEN LOGIN
 userSchema.methods.getJWTToken = function () {
-  return jwt.sign(
-    {
+  return jwt.sign({
       _id: this._id,
     },
     process.env.JWT_SECRET

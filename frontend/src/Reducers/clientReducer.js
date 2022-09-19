@@ -117,3 +117,25 @@ export const getSingleClients = createReducer(initialState, {
     state.error = null;
   },
 });
+
+export const updateClient = createReducer(initialState, {
+  // LOGIN
+  UpdateClientRequest: (state) => {
+    state.loading = true;
+  },
+  UpdateClientSuccess: (state, action) => {
+    state.loading = false;
+    state.message = action.payload;
+  },
+  UpdateClientFailure: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+  UpdateClientReset: (state) => {
+    state.loading = false;
+    state.message = null;
+  },
+  clearErrors: (state) => {
+    state.error = null;
+  },
+});

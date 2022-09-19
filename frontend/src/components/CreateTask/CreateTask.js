@@ -19,7 +19,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import { useDispatch, useSelector } from "react-redux";
-import { createTask } from "../../Actions/taskActions";
+import { createTask, getDelayedTask } from "../../Actions/taskActions";
 import { Link, useParams } from "react-router-dom";
 import { getSingleClientTasks } from "../../Actions/clientActions";
 import { Tooltip } from "@mui/material";
@@ -122,6 +122,7 @@ const CreateTask = () => {
     }
     dispatch(getSingleClientTasks(id));
     dispatch(getAllUsers());
+    dispatch(getDelayedTask())
   }, [dispatch, id, createtaskerror, createtask, alert]);
 
   // TASK GRID

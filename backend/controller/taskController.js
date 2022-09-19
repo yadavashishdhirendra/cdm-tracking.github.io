@@ -221,14 +221,47 @@ exports.getProductiveHours = async (req, res) => {
 exports.getDelayedTask = async (req, res) => {
   try {
     let task = await Task.find({
-      enddate: {
-        $lt: new Date().toISOString(),
+      $or: [
+        {
+          $and: [
+            { enddate: { $gte: new Date().toISOString } },
+            { enddate: { $lte: new Date().toISOString } },
+          ],    // and operator body finishes
+        },
+        {
+          status: "In Progress",
+        },
+        {
+          status: "Todo",
+        }
+      ],
+      // owner: req.user._id,
+    })
+
+    let id = []
+
+    task && task.forEach((i) => {
+      id.push(i._id)
+    })
+
+    task = await Task.updateMany(
+      {
+        _id: {
+          $in: id
+        }
       },
-      owner: req.user._id,
-    });
+      {
+        $set: {
+          status: "Delayed"
+        }
+      },
+      { multi: true }
+    )
+
     return res.status(200).json({
       success: true,
       task,
+      id
     });
   } catch (error) {
     res.status(500).json({
@@ -339,6 +372,13 @@ exports.updateTask = async (req, res) => {
       useFindAndModify: false
     })
 
+    let email = "manish.s@gmail.com"
+
+    let user = await User.findOne({ email: email })
+    user.notifyTask.push(update._id)
+
+    await user.save();
+
     return res.status(200).json({
       success: true,
       update,
@@ -369,6 +409,25 @@ exports.getTaskNotification = async (req, res) => {
       success: true,
       task
     })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}
+
+exports.getAllTaskSpecificUser = async (req, res) => {
+  try {
+    let user = await User.findById(req.params.id)
+    const tasks = await Task.find({
+      owner: user
+    });
+
+    return res.status(200).json({
+      success: true,
+      tasks
+    });
   } catch (error) {
     res.status(500).json({
       success: false,

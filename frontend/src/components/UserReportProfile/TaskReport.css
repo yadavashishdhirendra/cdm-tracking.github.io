@@ -1,0 +1,78 @@
+.grid-user-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    margin-top: 3rem;
+}
+
+.grid-user-info>div {
+    border: 1px solid #F7F7F7;
+    padding: 20px 20px 20px 20px;
+}
+
+
+.user-img {
+    width: 100px;
+    height: 100px;
+    background: #544a7d;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f7f7f7, #ffc4c4);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f7f7f7, #ffc4c4);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+    /* border-radius: 50%; */
+}
+
+.user-img>p {
+    font-family: 'Poppins', 'sans-serif';
+    font-weight: 600;
+    font-size: 34px;
+}
+
+.grid-user-info>div:nth-child(1)>h4 {
+    font-family: 'Poppins', 'sans-serif';
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.user-name-span {
+    font-family: 'Poppins', 'sans-serif';
+    font-weight: 600;
+    color: #2b2b2b;
+    font-size: 16px;
+}
+
+.task-notification>h2 {
+    font-family: 'Poppins', 'sans-serif';
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #2b2b2b;
+    color: white;
+    display: inline-block;
+    padding: 3px 5px 3px 5px;
+}
+
+.update-notify-task {
+    display: flex;
+    align-items: center;
+    margin: 20px 0px 20px 0px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    max-width: fit-content;
+    padding: 10px;
+}
+
+.update-notify-task>a {
+    color: #544a7d;
+    display: flex;
+    margin-left: 1rem;
+}
+
+.update-notify-task>p {
+    font-family: 'Poppins', 'sans-serif';
+    font-weight: 300;
+    font-size: 14px;
+}

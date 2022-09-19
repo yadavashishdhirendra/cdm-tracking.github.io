@@ -3,7 +3,7 @@ import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { getSingleTask } from '../../Actions/taskActions';
+import { getSingleTask, updateTaskAll } from '../../Actions/taskActions';
 import { getAllUsers } from '../../Actions/userActions';
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Stack from "@mui/material/Stack";
@@ -12,10 +12,12 @@ import { Box } from '@mui/system';
 import './Edittask.css'
 import AddCardIcon from "@mui/icons-material/AddCard";
 import { SpinnerCircular } from 'spinners-react';
+import { useAlert } from 'react-alert';
 
 const EditTask = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const alert = useAlert();
     const { id } = useParams()
     const {
         users,
@@ -23,6 +25,8 @@ const EditTask = () => {
         loading: userloading,
     } = useSelector((state) => state.users);
     const { task, error, loading } = useSelector((state) => state.singletask);
+
+    const { message, loading: taskUpdateLoading } = useSelector((state) => state.taskupdate)
 
     const [startdate, setStartDate] = React.useState("");
 
@@ -36,18 +40,44 @@ const EditTask = () => {
         setEndDate(date);
     };
 
+
     const [taskname, setTaskname] = useState("");
     const [priority, setPriority] = useState("");
     const [email, setEmail] = useState("");
     const [reporter, setReporter] = useState("");
 
+    const handleTaskUpdate = (e) => {
+        e.preventDefault();
+        dispatch(updateTaskAll(id, taskname, priority, email, reporter, startdate, enddate))
+    }
+
     useEffect(() => {
-        if (id) {
-            dispatch(getSingleTask(id))
+        if (message) {
+            alert.success(message)
+            dispatch({
+                type: "updateTaskReset"
+            })
         }
-        dispatch(getSingleTask(id))
         dispatch(getAllUsers());
-    }, [dispatch, id])
+    }, [dispatch, message, alert])
+
+    useEffect(() => {
+        const handleTask = async () => {
+            await dispatch(getSingleTask(id))
+        }
+        handleTask();
+    }, [dispatch])
+
+    useEffect(() => {
+        if (task) {
+            setTaskname(task.taskname)
+            setPriority(task.priority)
+            setEmail(task.email)
+            setReporter(task.reporter)
+            setStartDate(task.startdate)
+            setEndDate(task.enddate)
+        }
+    }, [task])
 
     console.log(task, id)
     return (
@@ -69,7 +99,7 @@ const EditTask = () => {
             </div>
             <div className='edit-container'>
                 {
-                    loading ? <div className="spinner">
+                    loading || taskUpdateLoading ? <div className="spinner">
                         <SpinnerCircular enabled={true} color='#000' size={30} thickness={300} />
                     </div> : <Box
                         component="form"
@@ -78,14 +108,14 @@ const EditTask = () => {
                         }}
                         noValidate
                         autoComplete="off"
-                    // onSubmit={(e) => handlePost(e)}
+                        onSubmit={(e) => handleTaskUpdate(e)}
                     >
                         <TextField
                             id="outlined-basic"
                             label="Create Task"
                             variant="outlined"
                             onChange={(e) => setTaskname(e.target.value)}
-                            defaultValue={task && task.taskname}
+                            value={taskname}
                         />
                         <FormControl sx={{ mb: 3, minWidth: 300 }} size="small">
                             <InputLabel
@@ -100,7 +130,7 @@ const EditTask = () => {
                                 id="demo-select-small"
                                 label="Priority"
                                 onChange={(e) => setPriority(e.target.value)}
-                                defaultValue={task && task.priority}
+                                value={priority}
                             >
                                 <MenuItem value="">
                                     <em>None</em>
@@ -115,14 +145,14 @@ const EditTask = () => {
                                 <DesktopDatePicker
                                     label="Start Date"
                                     inputFormat="DD/MM/YYYY"
-                                    defaultValue={task && task.startdate}
+                                    value={startdate}
                                     onChange={handleChange}
                                     renderInput={(params) => <TextField {...params} />}
                                 />
                                 <DesktopDatePicker
                                     label="End Date"
                                     inputFormat="DD/MM/YYYY"
-                                    defaultValue={task && task.enddate}
+                                    value={enddate}
                                     onChange={handleEndChange}
                                     renderInput={(params) => <TextField {...params} />}
                                 />
@@ -140,7 +170,7 @@ const EditTask = () => {
                                 labelId="demo-select-small"
                                 id="demo-select-small"
                                 label="Client Type"
-                                defaultValue={task && task.email}
+                                value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             >
                                 {users && users.length > 0
@@ -165,7 +195,7 @@ const EditTask = () => {
                                 labelId="demo-select-small"
                                 id="demo-select-small"
                                 label="Client Type"
-                                defaultValue={task && task.reporter}
+                                value={reporter}
                                 onChange={(e) => setReporter(e.target.value)}
                             >
                                 {users && users.length > 0

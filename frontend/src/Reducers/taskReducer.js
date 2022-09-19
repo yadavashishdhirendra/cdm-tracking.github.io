@@ -249,3 +249,43 @@ export const addLink = createReducer(initialState, {
     state.error = null;
   },
 });
+
+export const updateTask = createReducer(initialState, {
+  // LOGIN
+  updateTaskRequest: (state) => {
+    state.loading = true;
+  },
+  updateTaskSuccess: (state, action) => {
+    state.loading = false;
+    state.message = action.payload;
+  },
+  updateTaskFailure: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+  updateTaskReset: (state) => {
+    state.loading = false;
+    state.message = null;
+  },
+  clearErrors: (state) => {
+    state.error = null;
+  },
+});
+
+export const getAllTaskSpecificUser = createReducer(initialState, {
+  // LOGIN
+  getAllTaskSpecificuserRequest: (state) => {
+    state.loading = true;
+  },
+  getAllTaskSpecificuserSuccess: (state, action) => {
+    state.loading = false;
+    state.tasks = action.payload;
+  },
+  getAllTaskSpecificuserFailure: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+  clearErrors: (state) => {
+    state.error = null;
+  },
+});

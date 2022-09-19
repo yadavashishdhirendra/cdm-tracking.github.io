@@ -8,30 +8,68 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import SendIcon from "@mui/icons-material/Send";
 import './Edittask.css'
-import { getSingleClient } from "../../Actions/clientActions";
+import { getSingleClient, updateClient } from "../../Actions/clientActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { SpinnerCircular } from "spinners-react";
 import { Breadcrumbs, Typography } from "@mui/material";
+import { useAlert } from "react-alert";
 
 const EditClient = () => {
-    const { id } = useParams()
     const dispatch = useDispatch();
-    const { clients, error, loading } = useSelector((state) => state.clientdetails)
+    const { clients, error, loading: clientvalueLoading } = useSelector((state) => state.clientdetails)
+    const { message, error: clientUpdateError, loading } = useSelector((state) => state.clientUpdate)
     const [clientname, setClientName] = useState("");
     const [clienttype, setClientType] = useState("");
     const [clientemail, setClientEmail] = useState("");
     const [mobileno, setMobileno] = useState("");
+    const alert = useAlert();
+    const { id } = useParams();
+    console.log(id, "NAMASTEY LONDON")
+
+    const handleClientUpdate = async (e) => {
+        e.preventDefault();
+        await dispatch(updateClient(id, clientname, clienttype, clientemail, mobileno))
+        dispatch(getSingleClient(id))
+        // console.log()
+    }
 
     console.log(clients, "xuu")
 
     useEffect(() => {
-        if (id) {
-            dispatch(getSingleClient(id))
+        if (error) {
+            alert.error(error)
         }
-        dispatch(getSingleClient(id))
-    }, [dispatch, id])
+        if (message) {
+            alert.success(message)
+            dispatch({
+                type: "UpdateClientReset"
+            })
+        }
+        // dispatch(getSingleClient(id))
+    }, [dispatch, id, error, alert, message])
 
+    const [client, setClient] = useState([])
+
+    useEffect(() => {
+        const handleClient = async () => {
+            await dispatch(getSingleClient(id))
+            setClient(clients)
+        }
+        handleClient();
+    }, [dispatch])
+
+    useEffect(() => {
+        if (clients) {
+            setClientName(clients.clientname)
+            setClientType(clients.clienttype)
+            setClientEmail(clients.clientemail)
+            setMobileno(clients.mobileno)
+        }
+    }, [clients])
+
+
+    console.log(client, "xyx")
     return (
         <>
             <div className="breadcrumb">
@@ -51,7 +89,7 @@ const EditClient = () => {
             </div>
             <div className='edit-container'>
                 {
-                    loading ? <div className="spinner">
+                    loading || clientvalueLoading ? <div className="spinner">
                         <SpinnerCircular enabled={true} color='#000' size={30} thickness={300} />
                     </div> : <Box
                         component="form"
@@ -60,34 +98,29 @@ const EditClient = () => {
                         }}
                         noValidate
                         autoComplete="off"
-                    // onSubmit={(e) => handlePost(e)}
+                        onSubmit={(e) => handleClientUpdate(e)}
                     >
                         <TextField
                             // sx={{ field }}
                             id="outlined-basic"
                             label="Client Name"
                             variant="outlined"
-                            defaultValue={clients && clients.clientname}
+                            value={clientname}
                             onChange={(e) => setClientName(e.target.value)}
                         />
                         <FormControl sx={{ mb: 3, minWidth: 120 }} size="small">
                             <InputLabel
                                 id="demo-select-small"
-                                onChange={(e) => setClientType(e.target.value)}
                             >
                                 Client Type
                             </InputLabel>
                             <Select
                                 labelId="demo-select-small"
                                 id="demo-select-small"
-                                // value={clienttype}
-                                defaultValue={clients && clients.clienttype}
+                                value={clienttype}
                                 label="Client Type"
                                 onChange={(e) => setClientType(e.target.value)}
                             >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
                                 <MenuItem value="Android/Ios App">Android/Ios App</MenuItem>
                                 <MenuItem value="Web App">Web App</MenuItem>
                                 <MenuItem value="Website Development">
@@ -105,11 +138,11 @@ const EditClient = () => {
                             label="Client Email"
                             variant="outlined"
                             onChange={(e) => setClientEmail(e.target.value)}
-                            defaultValue={clients && clients.clientemail}
+                            value={clientemail}
                         />
                         <TextField
                             id="outlined-basic"
-                            defaultValue={clients && clients.mobileno}
+                            value={mobileno}
                             label="Mobile No."
                             variant="outlined"
                             onChange={(e) => setMobileno(e.target.value)}

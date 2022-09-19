@@ -37,7 +37,7 @@ exports.createClient = async (req, res) => {
 exports.getOwnClients = async (req, res) => {
   try {
     const clients = await Client.find({
-      owner: req.user.id,
+      // owner: req.user.id,
     }).sort({ createdAt: -1 });
 
     return res.status(200).json({
@@ -166,6 +166,7 @@ exports.updateClient = async (req, res) => {
   try {
     const clientupdate = {
       clientname: req.body.clientname,
+      clienttype: req.body.clienttype,
       clientemail: req.body.clientemail,
       service: req.body.service,
       mobileno: req.body.mobileno

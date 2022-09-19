@@ -8,6 +8,7 @@ const {
   getAllUsers,
   getOwnDetails,
   getTaskUsers,
+  userDetails,
 } = require("../controller/userController");
 const router = express.Router();
 
@@ -18,5 +19,6 @@ router.route("/logout").post(isAuthenticated, logoutUser);
 router.route("/users").get(isAuthenticated, getAllUsers);
 router.route("/get/user/details").get(isAuthenticated, getOwnDetails);
 router.route("/task/users").post(isAuthenticated, getTaskUsers);
+router.route("/user/report/:id").get(isAuthenticated, userDetails);
 
 module.exports = router;

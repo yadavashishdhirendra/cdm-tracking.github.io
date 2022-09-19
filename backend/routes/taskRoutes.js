@@ -15,6 +15,7 @@ const {
   addLinks,
   updateTask,
   getTaskNotification,
+  getAllTaskSpecificUser,
 } = require("../controller/taskController");
 const router = express.Router();
 
@@ -35,5 +36,6 @@ router.route("/add/link/:id").put(isAuthenticated, addLinks);
 router.route("/all/tasks").get(isAuthenticated, getAllTask);
 router.route("/update/task/:id").put(isAuthenticated, updateTask);
 router.route("/get/task/notification").get(isAuthenticated, getTaskNotification);
+router.route("/get/task/users/:id").get(isAuthenticated, getAllTaskSpecificUser);
 
 module.exports = router;

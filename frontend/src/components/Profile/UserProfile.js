@@ -109,8 +109,8 @@ const UserProfile = () => {
 
   const rows = [];
 
-  DelayedTask &&
-    DelayedTask.forEach((item) => {
+  task &&
+    task.forEach((item) => {
       rows.push({
         id: item._id,
         Task: item.taskname,
@@ -119,7 +119,7 @@ const UserProfile = () => {
         DeliveryDate: moment(item.enddate).format("DD/MM/YYYY"),
         Asignee: item.email,
         Reporter: item.reporter,
-        Status: "Delayed",
+        Status: item.status
       });
     });
 

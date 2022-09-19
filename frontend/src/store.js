@@ -6,6 +6,7 @@ import {
   getOwnClientReducer,
   getSingleClients,
   getsingleClientTask,
+  updateClient,
 } from "./Reducers/clientReducer";
 import {
   addComment,
@@ -13,15 +14,18 @@ import {
   addLink,
   addMinutes,
   createTaskReducer,
+  getAllTaskSpecificUser,
   getDelayedTask,
   getProductiveHours,
   getProductiveHoursEnd,
   getSingleTask,
   updateProductiveTime,
+  updateTask,
   updateTaskStatus,
 } from "./Reducers/taskReducer";
 import {
   AuthReducer,
+  getSingleUser,
   getUsers,
   getUsersByEmail,
   getUsersTasks,
@@ -49,7 +53,11 @@ const store = configureStore({
     hour: addHour,
     clients: getAllClients,
     link: addLink,
-    clientdetails: getSingleClients
+    clientdetails: getSingleClients,
+    singleUserReport: getSingleUser,
+    reportTask: getAllTaskSpecificUser,
+    clientUpdate: updateClient,
+    taskupdate: updateTask
   },
 });
 

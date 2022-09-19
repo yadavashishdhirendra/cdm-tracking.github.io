@@ -117,3 +117,23 @@ export const getSingleClient = (id) => async (dispatch) => {
     });
   }
 };
+
+export const updateClient = (id, clientname, clienttype, clientemail, mobileno) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "UpdateClientRequest",
+    });
+    const { data } = await axios.put(`/api/v2/update/client/${id}`, {
+      clientname, clienttype, clientemail, mobileno
+    });
+    dispatch({
+      type: "UpdateClientSuccess",
+      payload: data.message,
+    });
+  } catch (error) {
+    dispatch({
+      type: "UpdateClientFailure",
+      payload: error.response.data.message,
+    });
+  }
+};

@@ -84,7 +84,7 @@ const Dashboard = () => {
                 </Button>
               </Tooltip>
             </Link>
-            <Link to="">
+            <Link to={`/user/report/${params.getValue(params.id, "id")}`}>
               <Tooltip
                 title="User"
                 placement="top-start"

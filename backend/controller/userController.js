@@ -177,3 +177,20 @@ exports.getTaskUsers = async (req, res) => {
     });
   }
 };
+
+
+exports.userDetails = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    return res.status(200).json({
+      success: true,
+      user,
+      task: user.task.length
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

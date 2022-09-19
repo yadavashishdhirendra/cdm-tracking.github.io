@@ -116,3 +116,22 @@ export const getUsersByEmail = createReducer(initialState, {
     state.error = null;
   },
 });
+
+
+export const getSingleUser = createReducer(initialState, {
+  // LOGIN
+  getSingleUserRequest: (state) => {
+    state.loading = true;
+  },
+  getSingleUserSuccess: (state, action) => {
+    state.loading = false;
+    state.user = action.payload;
+  },
+  getSingleUserFailure: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+  clearErrors: (state) => {
+    state.error = null;
+  },
+});

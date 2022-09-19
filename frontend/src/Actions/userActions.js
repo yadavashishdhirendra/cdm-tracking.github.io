@@ -137,3 +137,22 @@ export const getUsersEmail = (email) => async (dispatch) => {
     });
   }
 };
+
+
+export const getSingleUser = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "getSingleUserRequest",
+    });
+    const { data } = await axios.get(`/api/v2/user/report/${id}`);
+    dispatch({
+      type: "getSingleUserSuccess",
+      payload: data.user,
+    });
+  } catch (error) {
+    dispatch({
+      type: "getSingleUserFailure",
+      payload: error.response.data.message,
+    });
+  }
+};

@@ -259,3 +259,41 @@ export const addLink = (id,link) => async (dispatch) => {
     });
   }
 };
+
+export const getAllTaskSpecificAccount = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "getAllTaskSpecificuserRequest",
+    });
+    const { data } = await axios.get(`/api/v2/get/task/users/${id}`);
+    dispatch({
+      type: "getAllTaskSpecificuserSuccess",
+      payload: data.tasks,
+    });
+  } catch (error) {
+    dispatch({
+      type: "getAllTaskSpecificuserFailure",
+      payload: error.response.data.message,
+    });
+  }
+};
+
+export const updateTaskAll = (id, taskname, priority, email, reporter, startdate, enddate) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "updateTaskRequest",
+    });
+    const { data } = await axios.put(`/api/v2/update/task/${id}`, {
+      taskname, priority, email, reporter, startdate, enddate
+    });
+    dispatch({
+      type: "updateTaskSuccess",
+      payload: data.message,
+    });
+  } catch (error) {
+    dispatch({
+      type: "updateTaskFailure",
+      payload: error.response.data.message,
+    });
+  }
+};
